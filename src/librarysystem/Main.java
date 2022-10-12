@@ -6,10 +6,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-
-
 public class Main {
-
+	//hello test comment
 	public static void main(String[] args) {
 	      EventQueue.invokeLater(() -> 
 	         {
