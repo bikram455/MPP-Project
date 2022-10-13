@@ -206,6 +206,8 @@ public class AddBook extends JPanel{
 		                authorPhone.setText("");
 		                title.setText("");
 		                checkoutLength.setText("");
+		                JOptionPane.showMessageDialog(AddBook.this, "Book Added", "SUCESS",
+								JOptionPane.PLAIN_MESSAGE);
 					}
 					catch(NumberFormatException err) {
 							JOptionPane.showMessageDialog(AddBook.this, "Checkout Length must be number!!!", "Error",

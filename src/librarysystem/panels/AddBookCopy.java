@@ -74,6 +74,8 @@ public class AddBookCopy extends JPanel {
 					} else {
 						book.addCopy();
 						daf.updateBook(book);
+						JOptionPane.showMessageDialog(AddBookCopy.this, "Book Copy Added", "SUCESS",
+								JOptionPane.PLAIN_MESSAGE);
 						System.out.println("Book Copy Added");
 					}
 				}}

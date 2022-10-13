@@ -205,7 +205,8 @@ public class AddMember extends JPanel
 						city.setText("");
 						state.setText("");
 						zip.setText("");
-						
+						JOptionPane.showMessageDialog(AddMember.this, daf.searchMember(membId), "SUCESS",
+								JOptionPane.PLAIN_MESSAGE);
 						System.out.println(membId + " " + memberFirstName + " " + memberLastName + " " + telephone + " "
 								+ address.toString());
 
