@@ -13,7 +13,16 @@ public class SecondForm extends JFrame {
 
 		this.auth = auth;
 		System.out.println("user types is  : " + auth);
+		initialize();
 	}
 
 	
+	public void initialize() {
+		setTitle("second Form ");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setSize(200, 200);
+		setBounds(450, 190, 1014, 597);
+		setResizable(false);
+		setVisible(true);
+	}
 }
