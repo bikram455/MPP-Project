@@ -40,6 +40,8 @@ public class TestData {
 		allBooks.get(2).addCopy();
 		allBooks.get(2).addCopy();
 		DataAccessFacade.loadBookMap(allBooks);
+		
+//		
 	}
 	
 	public void userData() {
@@ -100,7 +102,7 @@ public class TestData {
 	};
 	
 	@SuppressWarnings("serial")
-	List<User> allUsers = new ArrayList<User>() {
+	public List<User> allUsers = new ArrayList<User>() {
 		{
 			add(new User("101", "xyz", Auth.LIBRARIAN));
 			add(new User("102", "abc", Auth.ADMIN));
