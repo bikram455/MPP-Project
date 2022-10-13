@@ -7,7 +7,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 
 public class Message extends JPanel {
-	private String message = "Default display message";
+	private String message = "";
 	/**
 	 * Create the panel.
 	 */
@@ -17,6 +17,7 @@ public class Message extends JPanel {
 
 		JLabel lblNewLabel = new JLabel(getMessage());
 		add(lblNewLabel);
+	
 
 	}
 

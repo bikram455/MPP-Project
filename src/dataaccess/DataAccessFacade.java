@@ -10,9 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import business.Book;
-import business.BookCopy;
 import business.LibraryMember;
-import dataaccess.DataAccessFacade.StorageType;
 
 
 public class DataAccessFacade implements DataAccess {
@@ -34,6 +32,9 @@ public class DataAccessFacade implements DataAccess {
 		saveToStorage(StorageType.MEMBERS, mems);	
 	}
 	
+	
+	
+	 
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {
 		//Returns a Map with name/value pairs being
@@ -169,6 +170,31 @@ public class DataAccessFacade implements DataAccess {
 			return "(" + first.toString() + ", " + second.toString() + ")";
 		}
 		private static final long serialVersionUID = 5399827794066637059L;
+	}
+
+
+
+//	@Override
+//	public Book searchBook(String isbn) {
+//		// TODO Auto-generated method stub
+//		 HashMap<String, Book> books = readBooksMap();
+//	        if (books.containsKey(isbn)) {
+//	            return books.get(isbn);
+//	        }
+//	        return null;
+//	}
+
+
+
+
+	@Override
+	public LibraryMember searchMember(String memberId) {
+		// TODO Auto-generated method stub
+		 HashMap<String, LibraryMember> members = readMemberMap();
+	        if (members.containsKey(memberId)) {
+	            return members.get(memberId);
+	        }
+	        return null;
 	}
 	
 }
