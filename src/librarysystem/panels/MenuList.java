@@ -38,7 +38,7 @@ public class MenuList extends JPanel {
 	}
 
 	public String[] getMenuList() {
-		String[] items = {"Logout", "Add Book", "Add Member", "Search Book"};
+		String[] items = {"Logout", "Add Book", "Add Book Copy", "Add Member", "Search Book", "Search Member", "All Book Id", "All Member Id", "Checkout Book"};
 		return items;
 	}
 }
