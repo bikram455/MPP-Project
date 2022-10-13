@@ -1,13 +1,15 @@
 package librarysystem;
 
-import javax.swing.JFrame;
-import librarysystem.panels.*;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import business.ListItem;
 import java.awt.BorderLayout;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
+import business.ListItem;
+import librarysystem.panels.Content;
+import librarysystem.panels.MenuList;
+import librarysystem.panels.Message;
 
 public class SecondForm extends JFrame {
 
@@ -62,7 +64,7 @@ public class SecondForm extends JFrame {
 //
 //		JLabel lblNewLabel = new JLabel("New label");
 //		panel.add(lblNewLabel);
-		System.out.println("user types is  : " + auth);
+//		System.out.println("user types is  : " + auth);
 
 	}
 
@@ -82,10 +84,10 @@ public class SecondForm extends JFrame {
 		setContentPane(mainPanel);
 		mainPanel.setLayout(new BorderLayout(0, 0));
 
-		JPanel menuPanel = new MenuList(this);
+		JPanel menuPanel = new MenuList(this, this.auth);
 		mainPanel.add(menuPanel, BorderLayout.WEST);
 
-		 contentPanel = new Content();
+		 contentPanel = new Content(this.auth);
 		mainPanel.add(contentPanel, BorderLayout.CENTER);
 
 		JPanel messagePanel = new Message();

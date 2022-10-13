@@ -1,9 +1,10 @@
 package librarysystem.panels;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
-import java.awt.Color;
-import java.awt.CardLayout;
 
 public class Content extends JPanel {
 	private JPanel prev;
@@ -18,7 +19,7 @@ public class Content extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Content() {
+	public Content(String auth) {
 		addBook = new AddBook();
 		addMember = new AddMember();
 		searchBook = new SearchBook();
@@ -48,10 +49,11 @@ public class Content extends JPanel {
 		allMemberId.setVisible(false);
 		add(allMemberId);
 
-		this.addLayout("'Add Book");
+		if(auth.equals("ADMIN")) this.addLayout("Add Member");
+		else this.addLayout("Checkout Book");
 	}
 	public void addLayout(String page) {
-		System.out.println("page:"+page);
+		System.out.println("this is page:"+page);
 		if(prev != null) prev.setVisible(false);
 		switch(page) {
 			case "Add Book":
@@ -59,10 +61,8 @@ public class Content extends JPanel {
 				addBook.setVisible(true);
 				break;
 			case "Add Member":
-				System.out.println("matched:"+page);
 				prev = addMember;
 				addMember.setVisible(true);
-				
 				break;
 			case "Search Book":
 				prev = searchBook;
