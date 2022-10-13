@@ -64,7 +64,7 @@ public class SecondForm extends JFrame {
 //
 //		JLabel lblNewLabel = new JLabel("New label");
 //		panel.add(lblNewLabel);
-		System.out.println("user types is  : " + auth);
+//		System.out.println("user types is  : " + auth);
 
 	}
 
@@ -87,7 +87,7 @@ public class SecondForm extends JFrame {
 		JPanel menuPanel = new MenuList(this, this.auth);
 		mainPanel.add(menuPanel, BorderLayout.WEST);
 
-		 contentPanel = new Content();
+		 contentPanel = new Content(this.auth);
 		mainPanel.add(contentPanel, BorderLayout.CENTER);
 
 		JPanel messagePanel = new Message();
