@@ -1,26 +1,13 @@
 package librarysystem;
 
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-
-import dataaccess.Auth;
 import librarysystem.panels.*;
-
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-
 import business.ListItem;
-
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Component;
 
-import javax.swing.JLabel;
-import javax.swing.JList;
+
 
 public class SecondForm extends JFrame {
 
@@ -108,6 +95,12 @@ public class SecondForm extends JFrame {
 	public void test(String page) {
 
 		((Content) contentPanel).addLayout(page);
+		
+		if(page.equalsIgnoreCase("Logout")){
+			new Login();
+			dispose();
+		}
 	}
-
+	
+	
 }
