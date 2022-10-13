@@ -18,6 +18,8 @@ public class Util {
 	public static final Color INFO_MESSAGE_COLOR = new Color(24, 98, 19); //dark green
 	public static final Color LINK_AVAILABLE = DARK_BLUE;
 	public static final Color LINK_NOT_AVAILABLE = Color.gray;
+	
+	
 	//rgb(18, 75, 14)
 	
 	public static Font makeSmallFont(Font f) {
@@ -73,4 +75,6 @@ public class Util {
 		int frameWidth = f.getSize().width;
 		f.setLocation(((width - frameWidth) / 2), (height - frameHeight) / 3);
 	}
+	
+	
 }
