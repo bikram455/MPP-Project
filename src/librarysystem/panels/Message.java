@@ -14,12 +14,12 @@ public class Message extends JPanel {
 	public Message() {
 		setBorder(new CompoundBorder(new BevelBorder(BevelBorder.LOWERED, new Color(170, 121, 65), new Color(170, 121, 65), new Color(170, 121, 65), new Color(170, 121, 65)), null));
 		setBackground(new Color(254, 255, 255));
-		
+
 		JLabel lblNewLabel = new JLabel(getMessage());
 		add(lblNewLabel);
 
 	}
-	
+
 	public String getMessage() {
 		return message;
 	}

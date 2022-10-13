@@ -6,16 +6,6 @@ import javax.swing.JFrame;
 
 import dataaccess.Auth;
 import librarysystem.panels.*;
-//import librarysystem.uipanels.AddBookCopyPanel;
-//import librarysystem.uipanels.AddBookPanel;
-//import librarysystem.uipanels.AllBookIDs;
-//import librarysystem.uipanels.CheckoutBookPanel;
-//import librarysystem.uipanels.CheckoutRecordPanel;
-//import librarysystem.uipanels.LandingPanel;
-//import librarysystem.uipanels.LoginPanel;
-//import librarysystem.uipanels.NewMemberPanel;
-//import librarysystem.uipanels.OverDueBooksPanel;
-//import librarysystem.uipanels.Util;
 
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -36,24 +26,56 @@ public class SecondForm extends JFrame {
 
 	private String auth;
 	private JPanel mainPanel;
-	//JList<ListItem> linkList;
-	//public static JTextArea statusBar = new JTextArea("Welcome to the Library System!");
+	private JPanel contentPanel;
 
+	// public static JTextArea statusBar = new JTextArea("Welcome to the Library
+	// System!");
 
+	// listItem
+	ListItem addBookItem = new ListItem("Add Book", false);
+	ListItem addBookCopyItem = new ListItem("Add Book Copy", false);
+
+	ListItem[] librarianItems = { addBookItem };
+	ListItem[] adminItems = { addBookCopyItem, addBookItem };
+	ListItem[] allItems = { addBookCopyItem, addBookItem };
+
+	public ListItem[] getAdminItems() {
+		return adminItems;
+	}
+
+	public ListItem[] getAllItems() {
+		return allItems;
+	}
+
+	public ListItem[] getLibrarianItems() {
+		return librarianItems;
+	}
+
+	public void getItemsForUser(String auth) {
+		if (auth == "LIBRARIAN")
+			getLibrarianItems();
+		if (auth == "ADMIN")
+			getAdminItems();
+		else
+			getAllItems();
+
+	}
 
 	SecondForm(String auth) {
 
 		this.auth = auth;
+		getItemsForUser(this.auth);
 		initialize();
+
+		
 		createMainPanels();
 
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.SOUTH);
-
-		JLabel lblNewLabel = new JLabel("New label");
-		panel.add(lblNewLabel);
+//		JPanel panel = new JPanel();
+//		getContentPane().add(panel, BorderLayout.SOUTH);
+//
+//		JLabel lblNewLabel = new JLabel("New label");
+//		panel.add(lblNewLabel);
 		System.out.println("user types is  : " + auth);
-
 
 	}
 
@@ -73,15 +95,19 @@ public class SecondForm extends JFrame {
 		setContentPane(mainPanel);
 		mainPanel.setLayout(new BorderLayout(0, 0));
 
-		JPanel menuPanel = new MenuList();
+		JPanel menuPanel = new MenuList(this);
 		mainPanel.add(menuPanel, BorderLayout.WEST);
 
-		JPanel contentPanel = new Content();
+		 contentPanel = new Content();
 		mainPanel.add(contentPanel, BorderLayout.CENTER);
 
 		JPanel messagePanel = new Message();
 		mainPanel.add(messagePanel, BorderLayout.SOUTH);
 	}
 
-	
+	public void test(String page) {
+
+		((Content) contentPanel).addLayout(page);
+	}
+
 }
