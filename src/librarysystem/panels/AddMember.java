@@ -9,6 +9,8 @@ import business.LibraryMember;
 import dataaccess.DataAccessFacade;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -165,14 +167,41 @@ public class AddMember extends JPanel
 	                String memberCity = city.getText();
 	                String memberState = state.getText();
 	                String memberZip = zip.getText();
-	                Address address = new Address(memberStreet, memberCity, memberState, memberZip);
-	                
-	                LibraryMember libraryMember = new LibraryMember(memberFirstName, memberFirstName, memberLastName, telephone, address);
-	                DataAccessFacade daf = new DataAccessFacade();
-	                daf.saveNewMember(libraryMember);
-	                
-	                System.out.println(membId +" "+ memberFirstName +" " + memberLastName + " " + telephone + " " + address.toString());
-	            }
+	                if (membId.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "Id cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (memberFirstName.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "First Name cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (memberLastName.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "Last Name cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (telephone.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "Phone Number cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (memberStreet.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "Street cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (memberCity.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "City cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (memberState.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "State cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (memberZip.isEmpty()) {
+						JOptionPane.showMessageDialog(AddMember.this, "Zip cannot be empty!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						Address address = new Address(memberStreet, memberCity, memberState, memberZip);
+						LibraryMember libraryMember = new LibraryMember(memberFirstName, memberFirstName, memberLastName,
+								telephone, address);
+						DataAccessFacade daf = new DataAccessFacade();
+						daf.saveNewMember(libraryMember);
+
+						System.out.println(membId + " " + memberFirstName + " " + memberLastName + " " + telephone + " "
+								+ address.toString());
+
+					}}
 	        };
 			return addMemberListener;
 		}

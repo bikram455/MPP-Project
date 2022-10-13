@@ -1,6 +1,4 @@
-/librarysystem/
-<<<<<<< HEAD
-/dataaccess/
-=======
->>>>>>> 5a770ac5fbb6e91eafe5e86f1cedc7d3a68e36ee
+/.DS_Store
 /business/
+/dataaccess/
+/librarysystem/
