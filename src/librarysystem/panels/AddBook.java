@@ -1,16 +1,180 @@
 package librarysystem.panels;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+//import javax.swing.JLabel;
+//import javax.swing.JPanel;
+//
+//public class AddBook extends JPanel {
+//
+//	/**
+//	 * Create the panel.
+//	 */
+//	public AddBook() {
+//		JLabel label = new JLabel("this is add book.");
+//		add(label);
+//	}
+//
+//}
 
-public class AddBook extends JPanel {
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+
+import business.Address;
+import business.Author;
+import business.Book;
+import business.ControllerInterface;
+import business.LibraryMember;
+import business.SystemController;
+import dataaccess.DataAccessFacade;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class AddBook extends JPanel{
+	
+	private JTextField isbn;
+	private JTextField authorFirstName;
+	private JTextField title;
+	private JTextField checkoutLength;
+	private boolean isInitialized = false;
+	private JTextField textLastName;
+	private JTextField authorPhone;
+	/**
+	 * Launch the application.
+	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AddBookPanelCopy frame = new AddBookPanelCopy();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+	
+ public AddBook() {
+	 init();
+ }
+	
+	
 
 	/**
-	 * Create the panel.
+	 * Create the frame.
 	 */
-	public AddBook() {
-		JLabel label = new JLabel("this is add book.");
-		add(label);
+	public void init() {
+		setBounds(100, 100, 538, 472);
+		this.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("ADD BOOK");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNewLabel.setBounds(10, 10, 191, 24);
+		this.add(lblNewLabel);
+		
+		JLabel txtIsbn = new JLabel("ISBN\r\n");
+		txtIsbn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtIsbn.setBounds(54, 63, 95, 13);
+		this.add(txtIsbn);
+		
+		isbn = new JTextField();
+		isbn.setBounds(202, 62, 247, 26);
+		this.add(isbn);
+		isbn.setColumns(10);
+		
+		JLabel txtAuthorFN = new JLabel("Author First Name");
+		txtAuthorFN.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtAuthorFN.setBounds(54, 140, 137, 13);
+		this.add(txtAuthorFN);
+		
+		authorFirstName = new JTextField();
+		authorFirstName.setBounds(202, 135, 247, 28);
+		this.add(authorFirstName);
+		authorFirstName.setColumns(10);
+		
+		JLabel txtTitle = new JLabel("Title");
+		txtTitle.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtTitle.setBounds(54, 102, 95, 13);
+		this.add(txtTitle);
+		
+		title = new JTextField();
+		title.setBounds(202, 98, 247, 26);
+		this.add(title);
+		title.setColumns(10);
+		
+		JLabel txtCheckLength = new JLabel("Checkout Length");
+		txtCheckLength.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtCheckLength.setBounds(54, 267, 137, 24);
+		this.add(txtCheckLength);
+		
+		checkoutLength = new JTextField();
+		checkoutLength.setBounds(202, 259, 247, 32);
+		this.add(checkoutLength);
+		checkoutLength.setColumns(10);
+		
+		JButton addBookBtn = new JButton("ADD BOOK");
+		addBookBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		addBookBtn.setBounds(202, 308, 209, 29);
+		addBookBtn.addActionListener(addBookListener());
+		this.add(addBookBtn);
+		
+		
+		JLabel txtAuthorLN = new JLabel("Author Last Name");
+		txtAuthorLN.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtAuthorLN.setBounds(54, 178, 137, 24);
+		this.add(txtAuthorLN);
+		
+		textLastName = new JTextField();
+		textLastName.setBounds(202, 173, 247, 29);
+		this.add(textLastName);
+		textLastName.setColumns(10);
+		
+		JLabel txtAuthorPhone = new JLabel("Author Phone\r\n");
+		txtAuthorPhone.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtAuthorPhone.setBounds(54, 216, 128, 26);
+		this.add(txtAuthorPhone);
+		
+		authorPhone = new JTextField();
+		authorPhone.setBounds(202, 212, 247, 34);
+		this.add(authorPhone);
+		authorPhone.setColumns(10);
+		
+				
 	}
-
+	
+	public ActionListener addBookListener() {
+		ActionListener addBookListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	String bookIsbn = isbn.getText();
+                String bookAuthorFirstName = authorFirstName.getText();
+                String bookAuthorLastName = textLastName.getText();
+                String authorPhoneNumber = authorPhone.getText();
+                String bookTitle = title.getText();
+                int bookCheckoutLength = Integer.parseInt(checkoutLength.getText());
+                //String bookCopies = numberOfCopies.getText();
+                System.out.println(bookIsbn + " " + bookAuthorFirstName);
+                Address address = new Address("101 S. Main", "Fairfield", "IA", "52556");
+                Author author = new Author(bookAuthorFirstName, bookAuthorLastName, authorPhoneNumber, address, "He is Good.");
+                Book book = new Book(bookIsbn,bookTitle, bookCheckoutLength, List.of(author));
+                DataAccessFacade daf = new DataAccessFacade();
+                daf.saveNewBook(book);
+                
+                //System.out.println(membId +" "+ memberFirstName +" " + memberLastName + " " + telephone + " " + address.toString());
+            }
+        };
+		return addBookListener;
+	}
+	
 }
+
