@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import business.Address;
 import business.Author;
@@ -161,16 +162,62 @@ public class AddBook extends JPanel{
                 String bookAuthorLastName = textLastName.getText();
                 String authorPhoneNumber = authorPhone.getText();
                 String bookTitle = title.getText();
-                int bookCheckoutLength = Integer.parseInt(checkoutLength.getText());
-                //String bookCopies = numberOfCopies.getText();
-                System.out.println(bookIsbn + " " + bookAuthorFirstName);
-                Address address = new Address("101 S. Main", "Fairfield", "IA", "52556");
-                Author author = new Author(bookAuthorFirstName, bookAuthorLastName, authorPhoneNumber, address, "He is Good.");
-                Book book = new Book(bookIsbn,bookTitle, bookCheckoutLength, List.of(author));
-                DataAccessFacade daf = new DataAccessFacade();
-                daf.saveNewBook(book);
+                String checkoutLengthData = checkoutLength.getText();
                 
-                //System.out.println(membId +" "+ memberFirstName +" " + memberLastName + " " + telephone + " " + address.toString());
+                if (bookIsbn.isEmpty()) {
+					JOptionPane.showMessageDialog(AddBook.this, "ISBN cannot be empty!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (bookAuthorFirstName.isEmpty()) {
+					JOptionPane.showMessageDialog(AddBook.this, "First Name cannot be empty!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				else if (bookAuthorLastName.isEmpty()) {
+					JOptionPane.showMessageDialog(AddBook.this, "Last Name cannot be empty!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				else if (authorPhoneNumber.isEmpty()) {
+					JOptionPane.showMessageDialog(AddBook.this, "Phone Number cannot be empty!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				else if (bookTitle.isEmpty()) {
+					JOptionPane.showMessageDialog(AddBook.this, "Title cannot be empty!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				else if (checkoutLengthData.isEmpty()) {
+					JOptionPane.showMessageDialog(AddBook.this, "Checkout Length cannot be empty!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}else {
+					int bookCheckoutLength = 0;
+					
+					try {
+						bookCheckoutLength= Integer.parseInt(checkoutLengthData);
+						System.out.println(bookIsbn + " " + bookAuthorFirstName);
+		                
+			               
+		                Address address = new Address("101 S. Main", "Fairfield", "IA", "52556");
+		                Author author = new Author(bookAuthorFirstName, bookAuthorLastName, authorPhoneNumber, address, "He is Good.");
+		                Book book = new Book(bookIsbn,bookTitle, bookCheckoutLength, List.of(author));
+		                DataAccessFacade daf = new DataAccessFacade();
+		                daf.saveNewBook(book);
+		                
+		                isbn.setText("");
+		                authorFirstName.setText("");
+		                textLastName.setText("");
+		                authorPhone.setText("");
+		                title.setText("");
+		                checkoutLength.setText("");
+					}
+					catch(NumberFormatException err) {
+							JOptionPane.showMessageDialog(AddBook.this, "Checkout Length must be number!!!", "Error",
+									JOptionPane.ERROR_MESSAGE);
+						
+					}
+										
+	                //String bookCopies = numberOfCopies.getText();
+	                
+				}
+                
+                    //System.out.println(membId +" "+ memberFirstName +" " + memberLastName + " " + telephone + " " + address.toString());
             }
         };
 		return addBookListener;

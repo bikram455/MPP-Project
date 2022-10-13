@@ -59,10 +59,10 @@ public class MenuList extends JPanel {
 			String[] items = {"Checkout Book", "Search Member", "Search Book", "All Book Id", "All Member Id", "Logout"};
 			return items;
 		} else if(access.equals("ADMIN")) {
-				String[] items = {"Add Member", "Add Book", "Add Copy", "All Book Id", "All Member Id", "Logout"};
+				String[] items = {"Add Member", "Add Book", "Add Book Copy", "All Book Id", "All Member Id", "Logout"};
 				return items;
 		} else {
-			String[] items = {"Checkout Book", "Search Member", "Search Book", "Add Member", "Add Book", "Add Copy", "All Book Id", "All Member Id", "Logout"};
+			String[] items = {"Checkout Book", "Search Member", "Search Book", "Add Member", "Add Book", "Add Book Copy", "All Book Id", "All Member Id", "Logout"};
 			return items;
 		}
 	}

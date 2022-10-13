@@ -22,8 +22,8 @@ public class DataAccessFacade implements DataAccess {
 	}
 	
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") 
-			+ "\\src\\dataaccess\\storage";
-//			+ "/src/dataaccess/storage";
+//			+ "\\src\\dataaccess\\storage";
+			+ "/src/dataaccess/storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 	
 	//implement: other save operations
@@ -80,6 +80,12 @@ public class DataAccessFacade implements DataAccess {
       mems.put(bookId, book);
       saveToStorage(StorageType.BOOKS, mems);    
   }
+	  //updateBook
+	  public void updateBook(Book book) {
+	        HashMap<String, Book> books = readBooksMap();
+	        books.put(book.getIsbn(), book);
+	        saveToStorage(StorageType.BOOKS, books);
+	    }
 	  
 
 	

@@ -72,11 +72,9 @@ public class AddBookCopy extends JPanel {
 					if (book == null) {
 						System.out.println("Book not found");
 					} else {
-
 						book.addCopy();
-						System.out.println(book.toString());
-
-						daf.saveNewBook(book);
+						daf.updateBook(book);
+						System.out.println("Book Copy Added");
 					}
 				}}
         };
