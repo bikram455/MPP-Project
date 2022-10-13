@@ -56,6 +56,31 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
 	}
 	
+	@SuppressWarnings("unchecked")
+    public HashMap<String, Book> readBookMap() {
+        //Returns a Map with name/value pairs being
+        //   memberId -> LibraryMember
+        return (HashMap<String, Book>) readFromStorage(
+                StorageType.BOOKS);
+    }
+	
+	// searchBook
+	  public Book searchBook(String isbn) {
+	        HashMap<String, Book> books = readBooksMap();
+	        if (books.containsKey(isbn)) {
+	            return books.get(isbn);
+	        }
+	        return null;
+	    }
+	  //saveBook
+	  public void saveNewBook(Book book) {
+      HashMap<String, Book> mems = readBookMap();
+      String bookId = book.getIsbn();
+      mems.put(bookId, book);
+      saveToStorage(StorageType.BOOKS, mems);    
+  }
+	  
+
 	
 	/////load methods - these place test data into the storage area
 	///// - used just once at startup  
