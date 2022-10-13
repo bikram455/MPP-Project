@@ -1,14 +1,12 @@
 package librarysystem;
 
 import javax.swing.JFrame;
-
 import librarysystem.panels.*;
-
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import business.ListItem;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
+
 
 
 public class SecondForm extends JFrame {
@@ -97,6 +95,12 @@ public class SecondForm extends JFrame {
 	public void test(String page) {
 
 		((Content) contentPanel).addLayout(page);
+		
+		if(page.equalsIgnoreCase("Logout")){
+			new Login();
+			dispose();
+		}
 	}
-
+	
+	
 }
