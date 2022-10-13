@@ -193,11 +193,19 @@ public class AddMember extends JPanel
 								JOptionPane.ERROR_MESSAGE);
 					} else {
 						Address address = new Address(memberStreet, memberCity, memberState, memberZip);
-						LibraryMember libraryMember = new LibraryMember(memberFirstName, memberFirstName, memberLastName,
+						LibraryMember libraryMember = new LibraryMember(membId, memberFirstName, memberLastName,
 								telephone, address);
 						DataAccessFacade daf = new DataAccessFacade();
 						daf.saveNewMember(libraryMember);
-
+						memberId.setText("");
+						firstName.setText("");
+						lastName.setText("");
+						phoneNumber.setText("");
+						street.setText("");
+						city.setText("");
+						state.setText("");
+						zip.setText("");
+						
 						System.out.println(membId + " " + memberFirstName + " " + memberLastName + " " + telephone + " "
 								+ address.toString());
 

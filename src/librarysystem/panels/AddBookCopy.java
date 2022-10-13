@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import business.Address;
 import business.Book;
+import business.BookCopy;
 import business.LibraryMember;
 import business.LibrarySystemException;
 import dataaccess.DataAccess;
@@ -52,7 +53,7 @@ public class AddBookCopy extends JPanel {
 		
 		JButton addBookCopy = new JButton("ADD BOOK COPY");
 		addBookCopy.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		addBookCopy.setBounds(163, 338, 149, 26);
+		addBookCopy.setBounds(500, 46, 223, 26);
 		addBookCopy.addActionListener(addBookCopyListener());
 		this.add(addBookCopy);
 	}
@@ -70,9 +71,12 @@ public class AddBookCopy extends JPanel {
 					Book book = daf.searchBook(iSbn);
 					if (book == null) {
 						System.out.println("Book not found");
-
 					} else {
-						
+
+						book.addCopy();
+						System.out.println(book.toString());
+
+						daf.saveNewBook(book);
 					}
 				}}
         };
