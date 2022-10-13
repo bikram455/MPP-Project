@@ -16,6 +16,7 @@ public class Content extends JPanel {
 	private AllBookId allBookId;
 	private AllMemberId allMemberId;
 	private CheckoutBook checkoutBook;
+	private boolean flag;
 	/**
 	 * Create the panel.
 	 */
@@ -51,9 +52,9 @@ public class Content extends JPanel {
 
 		if(auth.equals("ADMIN")) this.addLayout("Add Member");
 		else this.addLayout("Checkout Book");
+		flag = false;
 	}
 	public void addLayout(String page) {
-		System.out.println("this is page:"+page);
 		if(prev != null) prev.setVisible(false);
 		switch(page) {
 			case "Add Book":

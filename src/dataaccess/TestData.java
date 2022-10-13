@@ -21,6 +21,11 @@ import business.LibraryMember;
  */
 public class TestData {
 	
+	public List<LibraryMember> members;
+	
+	public TestData() {
+		members = new ArrayList<>();
+	}
 	
 	public static void main(String[] args) {
 		TestData td = new TestData();
@@ -65,7 +70,7 @@ public class TestData {
 	}
 	
 	///////////// DATA //////////////
-	List<LibraryMember> members = new ArrayList<LibraryMember>();
+//	public List<LibraryMember> members = new ArrayList<LibraryMember>();
 	@SuppressWarnings("serial")
 	
 	List<Address> addresses = new ArrayList<Address>() {
@@ -92,7 +97,7 @@ public class TestData {
 	};
 	
 	@SuppressWarnings("serial")
-	List<Book> allBooks = new ArrayList<Book>() {
+	public List<Book> allBooks = new ArrayList<Book>() {
 		{
 			add(new Book("23-11451", "The Big Fish", 21, Arrays.asList(allAuthors.get(0), allAuthors.get(1))));
 			add(new Book("28-12331", "Antartica", 7, Arrays.asList(allAuthors.get(2))));
