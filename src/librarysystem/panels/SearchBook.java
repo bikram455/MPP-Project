@@ -14,25 +14,23 @@ import javax.swing.border.EmptyBorder;
 import business.Book;
 import business.SystemController;
 
-public class SearchBook extends JPanel{
-	
+public class SearchBook extends JPanel {
+
 	private JTextField searchBook;
 
-	
 	public SearchBook() {
 		JLabel label = new JLabel("this is search book.");
 		add(label);
-		
+
 		init();
 	}
 
-	
 	public void init() {
 		setBounds(100, 100, 589, 450);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		this.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Search Book");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblNewLabel.setBounds(10, 10, 232, 26);
@@ -48,7 +46,6 @@ public class SearchBook extends JPanel{
 		this.add(searchBook);
 		searchBook.setColumns(10);
 
-	
 		JButton addMember = new JButton("Search");
 		addMember.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		addMember.setBounds(450, 46, 223, 26);
@@ -56,28 +53,25 @@ public class SearchBook extends JPanel{
 		this.add(addMember);
 
 	}
-	
+
 	public ActionListener addLibraryMemberListener() {
 		ActionListener addMemberListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String search = searchBook.getText();
-				
-				if(search.isEmpty()) {
+
+				if (search.isEmpty()) {
 					JOptionPane.showMessageDialog(SearchBook.this, "ISBN ID cannot be empty!!!", "Error",
 							JOptionPane.ERROR_MESSAGE);
-				}else {
-				
-//					TODO implement code
-					
+				} else {
+
 					Book book = new SystemController().searchBook(search);
-					if(book==null) {
-						JOptionPane.showMessageDialog(SearchBook.this,"Book Not Found", "ERROR",
+					if (book == null) {
+						JOptionPane.showMessageDialog(SearchBook.this, "Book Not Found", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
-					}else {
-						JOptionPane.showMessageDialog(SearchBook.this, book, "SUCCESS",
-								JOptionPane.PLAIN_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(SearchBook.this, book, "SUCCESS", JOptionPane.PLAIN_MESSAGE);
 					}
-					
+
 				}
 
 			}

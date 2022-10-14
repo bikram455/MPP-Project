@@ -49,7 +49,7 @@ public class Login extends JFrame {
 	}
 
 	public void userLogin() {
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -115,10 +115,12 @@ public class Login extends JFrame {
 							new SecondForm(authorization).setVisible(true);
 							dispose();
 						} else {
-							JOptionPane.showMessageDialog(null, "Invalid UserName or Password !!!", "Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Invalid UserName or Password !!!", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						}
-					} catch(LoginException exc) {
-						JOptionPane.showMessageDialog(null, "Invalid UserName or Password !!!", "Error",JOptionPane.ERROR_MESSAGE);
+					} catch (LoginException exc) {
+						JOptionPane.showMessageDialog(null, "Invalid UserName or Password !!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
 						System.out.println("The exception is: " + exc);
 					}
 				}

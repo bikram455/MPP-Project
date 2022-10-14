@@ -17,9 +17,6 @@ public class SecondForm extends JFrame {
 	private JPanel mainPanel;
 	private JPanel contentPanel;
 
-	// public static JTextArea statusBar = new JTextArea("Welcome to the Library
-	// System!");
-
 	// listItem
 	ListItem addBookItem = new ListItem("Add Book", false);
 	ListItem addBookCopyItem = new ListItem("Add Book Copy", false);
@@ -56,15 +53,7 @@ public class SecondForm extends JFrame {
 		getItemsForUser(this.auth);
 		initialize();
 
-		
 		createMainPanels();
-
-//		JPanel panel = new JPanel();
-//		getContentPane().add(panel, BorderLayout.SOUTH);
-//
-//		JLabel lblNewLabel = new JLabel("New label");
-//		panel.add(lblNewLabel);
-//		System.out.println("user types is  : " + auth);
 
 	}
 
@@ -87,7 +76,7 @@ public class SecondForm extends JFrame {
 		JPanel menuPanel = new MenuList(this, this.auth);
 		mainPanel.add(menuPanel, BorderLayout.WEST);
 
-		 contentPanel = new Content(this.auth);
+		contentPanel = new Content(this.auth);
 		mainPanel.add(contentPanel, BorderLayout.CENTER);
 
 		JPanel messagePanel = new Message();
@@ -97,12 +86,11 @@ public class SecondForm extends JFrame {
 	public void test(String page) {
 
 		((Content) contentPanel).addLayout(page);
-		
-		if(page.equalsIgnoreCase("Logout")){
+
+		if (page.equalsIgnoreCase("Logout")) {
 			new Login();
 			dispose();
 		}
 	}
-	
-	
+
 }

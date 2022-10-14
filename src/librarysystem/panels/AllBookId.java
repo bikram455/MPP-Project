@@ -14,17 +14,15 @@ public class AllBookId extends JPanel {
 	 * Create the panel.
 	 */
 	public AllBookId() {
-//		TestData td = new TestData();
-//		List<Book> books = td.allBooks;
 		display();
 	}
-	
-	public void display(){
+
+	public void display() {
 		SystemController sc = new SystemController();
 		List<String[]> table = sc.allBookIds();
-		String[] columns = {"Book Id", "Book Title", "Number of Copies"};
-	
-		String[][] tableData= table.toArray(String[][]::new);
+		String[] columns = { "Book Id", "Book Title", "Number of Copies" };
+
+		String[][] tableData = table.toArray(String[][]::new);
 		JTable jt = new JTable(tableData, columns);
 		JScrollPane jp = new JScrollPane();
 		jt.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -32,6 +30,5 @@ public class AllBookId extends JPanel {
 		jt.getColumnModel().getColumn(2).setPreferredWidth(100);
 		add(new JScrollPane(jt));
 	}
-	
 
 }

@@ -1,6 +1,5 @@
 package librarysystem.panels;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,8 +17,6 @@ import business.LibraryMember;
 import business.SystemController;
 import dataaccess.DataAccessFacade;
 
-
-
 public class CheckoutBook extends JPanel {
 
 	private JTextField memberId;
@@ -33,20 +30,9 @@ public class CheckoutBook extends JPanel {
 		add(label);
 
 		init();
-		
-		fetchData();
+
 	}
 
-	public void fetchData() {
-	
-		DataAccessFacade data = new DataAccessFacade();
-//		System.out.println("Data " + data.readBooksMap());
-		
-	}
-	
-	
-	
-	
 	public void init() {
 		setBounds(100, 100, 589, 450);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -91,41 +77,41 @@ public class CheckoutBook extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String membId = memberId.getText();
 				String isbn = ISBN.getText();
-				
-				if(membId.isEmpty()) {
+
+				if (membId.isEmpty()) {
 					JOptionPane.showMessageDialog(CheckoutBook.this, "Member Id cannot be empty!!!", "Error",
 							JOptionPane.ERROR_MESSAGE);
-				}else if(isbn.isEmpty()) {
+				} else if (isbn.isEmpty()) {
 					JOptionPane.showMessageDialog(CheckoutBook.this, "ISBN Field cannot be empty!!!", "Error",
 							JOptionPane.ERROR_MESSAGE);
-				}else {
-				
+				} else {
+
 //					TODO implement code
 					DataAccessFacade da = new DataAccessFacade();
 					HashMap<String, LibraryMember> libMembers = da.readMemberMap();
 					HashMap<String, Book> books = da.readBooksMap();
 					LibraryMember member = libMembers.get(membId);
-					
+
 					Book checkBook = books.get(isbn);
-					if(member == null) { 
+					if (member == null) {
 						System.out.println("Library member not found");
 						JOptionPane.showMessageDialog(CheckoutBook.this, "Library member not found", "SUCESS",
 								JOptionPane.PLAIN_MESSAGE);
-						}
-					else {
-						if(checkBook == null) {
+					} else {
+						if (checkBook == null) {
 							System.out.println("Book not found");
 							JOptionPane.showMessageDialog(CheckoutBook.this, "Book not found", "SUCESS",
 									JOptionPane.PLAIN_MESSAGE);
-							}
-						else {
-							boolean flag = new SystemController().checkoutBook(checkBook, member, libMembers, da, books);
-							if(!flag) {
-								System.out.println("No copies of book available"); 
-								JOptionPane.showMessageDialog(CheckoutBook.this, "No copies of book available", "SUCESS",
-										JOptionPane.PLAIN_MESSAGE);
+						} else {
+							boolean flag = new SystemController().checkoutBook(checkBook, member, libMembers, da,
+									books);
+							if (!flag) {
+								System.out.println("No copies of book available");
+								JOptionPane.showMessageDialog(CheckoutBook.this, "No copies of book available",
+										"SUCESS", JOptionPane.PLAIN_MESSAGE);
 							} else {
-								JOptionPane.showMessageDialog(CheckoutBook.this, "Checkout Book Sucessful", "SUCESS", JOptionPane.PLAIN_MESSAGE);
+								JOptionPane.showMessageDialog(CheckoutBook.this, "Checkout Book Sucessful", "SUCESS",
+										JOptionPane.PLAIN_MESSAGE);
 								memberId.setText("");
 								ISBN.setText("");
 							}

@@ -14,35 +14,7 @@ import dataaccess.User;
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
 
-//	public void login(String id, String password) throws LoginException {
-//		DataAccess da = new DataAccessFacade();
-//		HashMap<String, User> map = da.readUserMap();
-//		if(!map.containsKey(id)) {
-//			throw new LoginException("ID " + id + " not found");
-//		}
-//		String passwordFound = map.get(id).getPassword();
-//		if(!passwordFound.equals(password)) {
-//			throw new LoginException("Password incorrect");
-//		}
-//		currentAuth = map.get(id).getAuthorization();
-//		
-//	}
-
 	public static final SystemController INSTANCE = new SystemController();
-	
-//	public void login(String id, String password) throws LoginException {
-//		DataAccess da = new DataAccessFacade();
-//		HashMap<String, User> map = da.readUserMap();
-//		if(!map.containsKey(id)) {
-//			throw new LoginException("ID " + id + " not found");
-//		}
-//		String passwordFound = map.get(id).getPassword();
-//		if(!passwordFound.equals(password)) {
-//			throw new LoginException("Password incorrect");
-//		}
-//		currentAuth = map.get(id).getAuthorization();
-//		
-//	}
 
 	@Override
 	public List<String[]> allMemberIds() {
@@ -56,10 +28,6 @@ public class SystemController implements ControllerInterface {
 			table.add(row);
 		}
 		return table;
-//		DataAccess da = new DataAccessFacade();
-//		List<String> retval = new ArrayList<>();
-//		retval.addAll(da.readMemberMap().keySet());
-//		return retval;
 	}
 
 	@Override
@@ -67,15 +35,10 @@ public class SystemController implements ControllerInterface {
 		HashMap<String, Book> books = new DataAccessFacade().readBooksMap();
 		List<String[]> table = new ArrayList<>();
 		for (String k : books.keySet()) {
-//			System.out.println("test"+books.get(k));
 			String[] row = { books.get(k).getIsbn(), books.get(k).getTitle(), String.valueOf(books.get(k).getCopies().length) };
 			table.add(row);
 		}
 		return table;
-//		DataAccess da = new DataAccessFacade();
-//		List<String> retval = new ArrayList<>();
-//		retval.addAll(da.readBooksMap().keySet());
-//		return retval;
 	}
 
 	@Override
@@ -111,25 +74,12 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public LibraryMember searchMember(String memberId) {
-		// TODO Auto-generated method stub
-
 		DataAccessFacade da = new DataAccessFacade();
 		da.searchMember(memberId);
-//		System.out.println("The member: " + da.searchMember(membId).getFirstName() + " " +da.searchMember(membId).getLastName());
 		LibraryMember memeber = da.searchMember(memberId);
 		if (memeber == null) {
 			memberId = null;
 		} else {
-//			CheckoutRecord cr = memeber.getCheckoutRecord(); 
-//			List<CheckoutRecordEntry> checkouts = cr.getEntries();
-//			if (checkouts==null) {
-//				System.out.println("Checkout is empty");
-//			} else {
-//				for (int i = 0; i < checkouts.size(); i++)
-//					System.out.println(checkouts.get(i));
-//			JOptionPane.showMessageDialog(SearchMember.this, da.searchMember(membId), "SUCESS",
-//					JOptionPane.PLAIN_MESSAGE);
-//			}
 		}
 		return memeber;
 	}

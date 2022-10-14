@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class CheckoutRecordEntry implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4588414476496935558L;
 	private LocalDate checkoutDate;
 	private Book book;
@@ -23,7 +20,7 @@ public class CheckoutRecordEntry implements Serializable{
 	
 	@Override
 	public String toString() {
-		return book.getIsbn() + " title: " + book.getTitle() + " "+ " copy id: " + copyNum +"  checkedout date: " + checkoutDate + " due date: " + dueDate;
+		return "ISBN: " + book.getIsbn() + " | title: " + book.getTitle() + " "+ " | copy id: " + copyNum +" |  checkedout date: " + checkoutDate + " | due date: " + dueDate + "\n";
 	}
 	
 	

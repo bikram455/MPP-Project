@@ -13,42 +13,34 @@ public class MenuList extends JPanel {
 	public JList menuList;
 	public SecondForm lib;
 	public HashMap<String, String> options;
+
 	/**
 	 * Create the panel.
 	 */
 	public MenuList(SecondForm lib, String access) {
 		this.lib = lib;
-		setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(170, 121, 65), new Color(170, 121, 65), new Color(170, 121, 65), new Color(170, 121, 65)));
+		setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(170, 121, 65), new Color(170, 121, 65),
+				new Color(170, 121, 65), new Color(170, 121, 65)));
 		setBackground(new Color(254, 255, 255));
-		
+
 		options = new HashMap<>();
 		options.put("Checkout Book", "LIBRARIAN");
 		options.put("Search Member", "LIBRARIAN");
 		options.put("Search Book", "LIBRARIAN");
 		options.put("All Book Id", "LIBRARIAN");
 		options.put("All Member Id", "LIBRARIAN");
-		
+
 		options.put("Add Member", "ADMIN");
 		options.put("Add Book", "ADMIN");
 		options.put("Add Copy", "ADMIN");
 		options.put("All Book Id", "ADMIN");
 		options.put("All Member Id", "ADMIN");
-		
-		
+
 		String[] items = getMenuList(access);
 
 		menuList = new JList(items);
 		menuList.setSelectedIndex(0);
-//		menuList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		menuList.setModel(new AbstractListModel() {		
-//			public int getSize() {
-//				return items.length;
-//			}
-//			public Object getElementAt(int index) {
-//				return items[index];
-//			}
-//		});
-		menuList.addListSelectionListener(event->{
+		menuList.addListSelectionListener(event -> {
 			lib.test(menuList.getSelectedValue().toString());
 		});
 		add(menuList);
@@ -56,14 +48,16 @@ public class MenuList extends JPanel {
 	}
 
 	public String[] getMenuList(String access) {
-		if(access.equals("LIBRARIAN")) {
-			String[] items = {"Checkout Book", "Search Member", "Search Book", "All Book Id", "All Member Id", "Logout"};
+		if (access.equals("LIBRARIAN")) {
+			String[] items = { "Checkout Book", "Search Member", "Search Book", "All Book Id", "All Member Id",
+					"Logout" };
 			return items;
-		} else if(access.equals("ADMIN")) {
-				String[] items = {"Add Member", "Add Book", "Add Book Copy", "All Book Id", "All Member Id", "Logout"};
-				return items;
+		} else if (access.equals("ADMIN")) {
+			String[] items = { "Add Member", "Add Book", "Add Book Copy", "All Book Id", "All Member Id", "Logout" };
+			return items;
 		} else {
-			String[] items = {"Checkout Book", "Search Member", "Search Book", "Add Member", "Add Book", "Add Book Copy", "All Book Id", "All Member Id", "Logout"};
+			String[] items = { "Checkout Book", "Search Member", "Search Book", "Add Member", "Add Book",
+					"Add Book Copy", "All Book Id", "All Member Id", "Logout" };
 			return items;
 		}
 	}

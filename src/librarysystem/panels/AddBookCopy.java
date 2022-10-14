@@ -22,8 +22,6 @@ public class AddBookCopy extends JPanel {
 	 */
 	public AddBookCopy() {
 		init();
-//		JLabel label = new JLabel("this is add book copy.");
-//		add(label);
 	}
 
 	public void init() {
