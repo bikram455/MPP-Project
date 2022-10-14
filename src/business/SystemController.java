@@ -68,7 +68,7 @@ public class SystemController implements ControllerInterface {
 		List<String[]> table = new ArrayList<>();
 		for (String k : books.keySet()) {
 //			System.out.println("test"+books.get(k));
-			String[] row = { books.get(k).getIsbn(), books.get(k).getTitle() };
+			String[] row = { books.get(k).getIsbn(), books.get(k).getTitle(), String.valueOf(books.get(k).getCopies().length) };
 			table.add(row);
 		}
 		return table;
