@@ -34,11 +34,19 @@ public class SystemController implements ControllerInterface {
 	}
 	
 	@Override
-	public List<String> allBookIds() {
-		DataAccess da = new DataAccessFacade();
-		List<String> retval = new ArrayList<>();
-		retval.addAll(da.readBooksMap().keySet());
-		return retval;
+	public List<String[]> allBookIds() {
+		HashMap<String, Book> books = new DataAccessFacade().readBooksMap();
+		List<String[]> table = new ArrayList<>();
+		for(String k: books.keySet()) {
+//			System.out.println("test"+books.get(k));
+			String[] row = {books.get(k).getIsbn(), books.get(k).getTitle()};
+			table.add(row);
+		}
+		return table;
+//		DataAccess da = new DataAccessFacade();
+//		List<String> retval = new ArrayList<>();
+//		retval.addAll(da.readBooksMap().keySet());
+//		return retval;
 	}
 	
 	

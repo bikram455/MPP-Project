@@ -1,6 +1,7 @@
 package librarysystem.panels;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import business.Book;
+import business.SystemController;
 import dataaccess.DataAccessFacade;
 
 public class AllBookId extends JPanel {
@@ -23,15 +25,10 @@ public class AllBookId extends JPanel {
 	}
 	
 	public void display(){
-		HashMap<String, Book> books = new DataAccessFacade().readBooksMap();
+		SystemController sc = new SystemController();
+		List<String[]> table = sc.allBookIds();
 		String[] columns = {"Book Id", "Book Title"};
-		
-		List<String[]> table = new ArrayList<>();
-		for(String k: books.keySet()) {
-//			System.out.println("test"+books.get(k));
-			String[] row = {books.get(k).getIsbn(), books.get(k).getTitle()};
-			table.add(row);
-		}
+	
 		String[][] tableData= table.toArray(String[][]::new);
 		JTable jt = new JTable(tableData, columns);
 		JScrollPane jp = new JScrollPane();
@@ -39,5 +36,6 @@ public class AllBookId extends JPanel {
 		jt.getColumnModel().getColumn(1).setPreferredWidth(200);
 		add(new JScrollPane(jt));
 	}
+	
 
 }

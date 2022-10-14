@@ -48,14 +48,14 @@ public class LibrarySystem extends JFrame implements LibWindow {
     private LibrarySystem() {}
     
     public void init() {
-    	formatContentPane();
-    	setPathToImage();
-    	insertSplashImage();
-		
-		createMenus();
-		//pack();
-		setSize(660,500);
-		isInitialized = true;
+//    	formatContentPane();
+//    	setPathToImage();
+//    	insertSplashImage();
+//		
+//		createMenus();
+//		//pack();
+//		setSize(660,500);
+//		isInitialized = true;
     }
     
     private void formatContentPane() {
@@ -73,26 +73,26 @@ public class LibrarySystem extends JFrame implements LibWindow {
         ImageIcon image = new ImageIcon(pathToImage);
 		mainPanel.add(new JLabel(image));	
     }
-    private void createMenus() {
-    	menuBar = new JMenuBar();
-		menuBar.setBorder(BorderFactory.createRaisedBevelBorder());
-		addMenuItems();
-		setJMenuBar(menuBar);		
-    }
+//    private void createMenus() {
+//    	menuBar = new JMenuBar();
+//		menuBar.setBorder(BorderFactory.createRaisedBevelBorder());
+//		addMenuItems();
+//		setJMenuBar(menuBar);		
+//    }
     
-    private void addMenuItems() {
-       options = new JMenu("Options");  
- 	   menuBar.add(options);
- 	   login = new JMenuItem("Login");
- 	   login.addActionListener(new LoginListener());
- 	   allBookIds = new JMenuItem("All Book Ids");
- 	   allBookIds.addActionListener(new AllBookIdsListener());
- 	   allMemberIds = new JMenuItem("All Member Ids");
- 	   allMemberIds.addActionListener(new AllMemberIdsListener());
- 	   options.add(login);
- 	   options.add(allBookIds);
- 	   options.add(allMemberIds);
-    }
+//    private void addMenuItems() {
+//       options = new JMenu("Options");  
+// 	   menuBar.add(options);
+// 	   login = new JMenuItem("Login");
+// 	   login.addActionListener(new LoginListener());
+// 	   allBookIds = new JMenuItem("All Book Ids");
+// 	   allBookIds.addActionListener(new AllBookIdsListener());
+// 	   allMemberIds = new JMenuItem("All Member Ids");
+// 	   allMemberIds.addActionListener(new AllMemberIdsListener());
+// 	   options.add(login);
+// 	   options.add(allBookIds);
+// 	   options.add(allMemberIds);
+//    }
     
     class LoginListener implements ActionListener {
 
@@ -106,29 +106,29 @@ public class LibrarySystem extends JFrame implements LibWindow {
 		}
     	
     }
-    class AllBookIdsListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			LibrarySystem.hideAllWindows();
-			AllBookIdsWindow.INSTANCE.init();
-			
-			List<String> ids = ci.allBookIds();
-			Collections.sort(ids);
-			StringBuilder sb = new StringBuilder();
-			for(String s: ids) {
-				sb.append(s + "\n");
-			}
-//			System.out.println(sb.toString());
-			AllBookIdsWindow.INSTANCE.setData(sb.toString());
-			AllBookIdsWindow.INSTANCE.pack();
-			//AllBookIdsWindow.INSTANCE.setSize(660,500);
-			Util.centerFrameOnDesktop(AllBookIdsWindow.INSTANCE);
-			AllBookIdsWindow.INSTANCE.setVisible(true);
-			
-		}
-    	
-    }
+//    class AllBookIdsListener implements ActionListener {
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			LibrarySystem.hideAllWindows();
+//			AllBookIdsWindow.INSTANCE.init();
+//			
+//			List<String> ids = ci.allBookIds();
+//			Collections.sort(ids);
+//			StringBuilder sb = new StringBuilder();
+//			for(String s: ids) {
+//				sb.append(s + "\n");
+//			}
+////			System.out.println(sb.toString());
+//			AllBookIdsWindow.INSTANCE.setData(sb.toString());
+//			AllBookIdsWindow.INSTANCE.pack();
+//			//AllBookIdsWindow.INSTANCE.setSize(660,500);
+//			Util.centerFrameOnDesktop(AllBookIdsWindow.INSTANCE);
+//			AllBookIdsWindow.INSTANCE.setVisible(true);
+//			
+//		}
+//    	
+//    }
     
     class AllMemberIdsListener implements ActionListener {
 
