@@ -4,7 +4,6 @@ package librarysystem.panels;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -15,9 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import business.Book;
-import business.BookCopy;
-import business.Checkout;
 import business.LibraryMember;
+import business.SystemController;
 import dataaccess.DataAccessFacade;
 
 
@@ -121,28 +119,15 @@ public class CheckoutBook extends JPanel {
 									JOptionPane.PLAIN_MESSAGE);
 							}
 						else {
-							boolean flag = false;
-							BookCopy[] bc = checkBook.getCopies();
-							for(int i = 0; i < bc.length; i++) {
-								if(bc[i].isAvailable()) {
-									flag = true;
-									LocalDate checkDate = LocalDate.now();
-									LocalDate dueDate = checkDate.plusDays(checkBook.getMaxCheckoutLength());
-									member.addCheckout(new Checkout(checkBook, bc[i].getCopyNum(),  checkDate, dueDate));
-									bc[i].changeAvailability();
-									da.saveMembersMap(libMembers);
-									da.saveBooksMap(books);
-									 JOptionPane.showMessageDialog(CheckoutBook.this, "Checkout Book Sucessful", "SUCESS",
-												JOptionPane.PLAIN_MESSAGE);
-									 memberId.setText("");
-									 ISBN.setText("");
-									break;
-								}
-							}
+							boolean flag = new SystemController().checkoutBook(checkBook, member, libMembers, da, books);
 							if(!flag) {
 								System.out.println("No copies of book available"); 
 								JOptionPane.showMessageDialog(CheckoutBook.this, "No copies of book available", "SUCESS",
 										JOptionPane.PLAIN_MESSAGE);
+							} else {
+								JOptionPane.showMessageDialog(CheckoutBook.this, "Checkout Book Sucessful", "SUCESS", JOptionPane.PLAIN_MESSAGE);
+								memberId.setText("");
+								ISBN.setText("");
 							}
 						}
 					}

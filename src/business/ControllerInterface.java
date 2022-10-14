@@ -1,7 +1,9 @@
 package business;
 
+import java.util.HashMap;
 import java.util.List;
 
+import dataaccess.DataAccessFacade;
 import dataaccess.User;
 
 public interface ControllerInterface {
@@ -14,7 +16,6 @@ public interface ControllerInterface {
 
 	LibraryMember searchMember(String memberId);
 	public void updateBook(Book book);
-	 public void addMember(String id, String firstName, String lastName, String cell,
-             String street, String city, String state, String zip)
-throws LibrarySystemException;
+	 public void addMember(String id, String firstName, String lastName, String cell, String street, String city, String state, String zip) throws LibrarySystemException;
+	public boolean checkoutBook(Book checkBook, LibraryMember member, HashMap<String, LibraryMember> libMembers, DataAccessFacade da, HashMap<String, Book> books);
 }

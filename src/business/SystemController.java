@@ -1,5 +1,6 @@
 package business;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -119,15 +120,16 @@ public class SystemController implements ControllerInterface {
 		if (memeber == null) {
 			memberId = null;
 		} else {
-			List<Checkout> checkouts = memeber.getCheckouts();
-			if (checkouts==null) {
-				System.out.println("Checkout is empty");
-			} else {
-				for (int i = 0; i < checkouts.size(); i++)
-					System.out.println(checkouts.get(i));
+//			CheckoutRecord cr = memeber.getCheckoutRecord(); 
+//			List<CheckoutRecordEntry> checkouts = cr.getEntries();
+//			if (checkouts==null) {
+//				System.out.println("Checkout is empty");
+//			} else {
+//				for (int i = 0; i < checkouts.size(); i++)
+//					System.out.println(checkouts.get(i));
 //			JOptionPane.showMessageDialog(SearchMember.this, da.searchMember(membId), "SUCESS",
 //					JOptionPane.PLAIN_MESSAGE);
-			}
+//			}
 		}
 		return memeber;
 	}
@@ -159,5 +161,23 @@ public class SystemController implements ControllerInterface {
 		DataAccessFacade daf = new DataAccessFacade();
 		daf.updateBook(book);
 	}
-	
+
+	@Override
+	public boolean checkoutBook(Book checkBook, LibraryMember member, HashMap<String, LibraryMember> libMembers, DataAccessFacade da, HashMap<String, Book> books) {
+		boolean flag = false;
+		BookCopy[] bc = checkBook.getCopies();
+		for(int i = 0; i < bc.length; i++) {
+			if(bc[i].isAvailable()) {
+				flag = true;
+				LocalDate checkDate = LocalDate.now();
+				LocalDate dueDate = checkDate.plusDays(checkBook.getMaxCheckoutLength());
+				member.addCheckout(new CheckoutRecordEntry(checkBook, bc[i].getCopyNum(),  checkDate, dueDate));
+				bc[i].changeAvailability();
+				da.saveMembersMap(libMembers);
+				da.saveBooksMap(books);
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import business.Book;
-import business.Checkout;
+import business.CheckoutRecord;
+import business.CheckoutRecordEntry;
 import business.LibraryMember;
 import business.SystemController;
 import dataaccess.DataAccessFacade;
@@ -102,8 +102,14 @@ public class SearchMember extends JPanel {
 						JOptionPane.showMessageDialog(SearchMember.this,"Member Not Found", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
 					}else {
-						JOptionPane.showMessageDialog(SearchMember.this, library, "SUCESS",
-								JOptionPane.PLAIN_MESSAGE);
+//						JOptionPane.showMessageDialog(SearchMember.this, library, "SUCESS",
+//								JOptionPane.PLAIN_MESSAGE);
+
+						CheckoutRecord cr = library.getCheckoutRecord();
+						List<CheckoutRecordEntry> entries = cr.getEntries();
+						for(CheckoutRecordEntry entry: entries) {
+							System.out.println(entry);
+						}
 					}
 					
 					

@@ -3,7 +3,7 @@ package business;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Checkout implements Serializable{
+public class CheckoutRecordEntry implements Serializable{
 	/**
 	 * 
 	 */
@@ -13,7 +13,7 @@ public class Checkout implements Serializable{
 	private int copyNum;
 	private LocalDate dueDate;
 	
-	public Checkout(Book book, int copyNum,  LocalDate checkoutDate, LocalDate dueDate) {
+	public CheckoutRecordEntry(Book book, int copyNum,  LocalDate checkoutDate, LocalDate dueDate) {
 		this.book = book;
 		this.copyNum = copyNum;
 		this.checkoutDate = checkoutDate;
@@ -23,7 +23,7 @@ public class Checkout implements Serializable{
 	
 	@Override
 	public String toString() {
-		return book + "copy id: " + copyNum +"  checkedout date: " + checkoutDate + " due date: " + dueDate;
+		return book.getIsbn() + " title: " + book.getTitle() + " "+ " copy id: " + copyNum +"  checkedout date: " + checkoutDate + " due date: " + dueDate;
 	}
 	
 	
