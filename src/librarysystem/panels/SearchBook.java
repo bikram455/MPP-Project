@@ -51,7 +51,7 @@ public class SearchBook extends JPanel{
 	
 		JButton addMember = new JButton("Search");
 		addMember.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		addMember.setBounds(500, 46, 223, 26);
+		addMember.setBounds(450, 46, 223, 26);
 		addMember.addActionListener(addLibraryMemberListener());
 		this.add(addMember);
 
