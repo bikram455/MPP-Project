@@ -106,10 +106,17 @@ public class SearchMember extends JPanel {
 //								JOptionPane.PLAIN_MESSAGE);
 
 						CheckoutRecord cr = library.getCheckoutRecord();
-						List<CheckoutRecordEntry> entries = cr.getEntries();
-						for(CheckoutRecordEntry entry: entries) {
-							System.out.println(entry);
+						if(cr == null) JOptionPane.showMessageDialog(SearchMember.this,"No checkout records found", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+						else {
+							List<CheckoutRecordEntry> entries = cr.getEntries();
+							String msg = "";
+							for(CheckoutRecordEntry entry: entries) {
+								System.out.println(entry);
+								msg += entry + "\n";
+								JOptionPane.showMessageDialog(SearchMember.this,msg, "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+							}
 						}
+						
 					}
 					
 					

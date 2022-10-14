@@ -13,8 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import business.Book;
 import business.SystemController;
-import dataaccess.DataAccessFacade;
-import dataaccess.User;
 
 public class SearchBook extends JPanel{
 	
@@ -76,7 +74,7 @@ public class SearchBook extends JPanel{
 						JOptionPane.showMessageDialog(SearchBook.this,"Book Not Found", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
 					}else {
-						JOptionPane.showMessageDialog(SearchBook.this, book, "SUCESS",
+						JOptionPane.showMessageDialog(SearchBook.this, book, "SUCCESS",
 								JOptionPane.PLAIN_MESSAGE);
 					}
 					
