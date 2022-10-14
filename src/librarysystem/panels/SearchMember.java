@@ -99,7 +99,7 @@ public class SearchMember extends JPanel {
 					
 					LibraryMember library = new SystemController().searchMember(membId);
 					if(library==null) {
-						JOptionPane.showMessageDialog(SearchMember.this,"Book Not Found", "ERROR",
+						JOptionPane.showMessageDialog(SearchMember.this,"Member Not Found", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
 					}else {
 						JOptionPane.showMessageDialog(SearchMember.this, library, "SUCESS",
