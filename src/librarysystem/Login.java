@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import dataaccess.TestData;
+import business.LoginException;
+import business.SystemController;
 import dataaccess.User;
 
 public class Login extends JFrame {
@@ -107,28 +107,20 @@ public class Login extends JFrame {
 					JOptionPane.showMessageDialog(Login.this, "Password cannot be empty!!!", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-
-					TestData test = new TestData();
-					List<User> users = test.allUsers;
-
-					String authorization = "";
-					boolean isLogin = false;
-
-					for (User user : users) {
-						if (userName.contains(user.getId()) && password.contains(user.getPassword())) {
-							isLogin = true;
+					try {
+						String authorization = "";
+						User user = new SystemController().login(userName, password);
+						if (user != null) {
 							authorization += user.getAuthorization();
-							break;
+							new SecondForm(authorization).setVisible(true);
+							dispose();
+						} else {
+							JOptionPane.showMessageDialog(null, "Invalid UserName or Password !!!", "Error",JOptionPane.ERROR_MESSAGE);
 						}
-					}
-
-					if (isLogin) {
-						new SecondForm(authorization).setVisible(true);
-						dispose();
-					} else {
+					} catch(LoginException exc) {
 						JOptionPane.showMessageDialog(null, "Invalid UserName or Password !!!", "Error",JOptionPane.ERROR_MESSAGE);
+						System.out.println("The exception is: " + exc);
 					}
-
 				}
 
 			}
