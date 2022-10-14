@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import business.Book;
 import business.BookCopy;
+import business.Checkout;
 import business.LibraryMember;
 import dataaccess.DataAccessFacade;
 
@@ -106,6 +107,7 @@ public class CheckoutBook extends JPanel {
 					HashMap<String, LibraryMember> libMembers = da.readMemberMap();
 					HashMap<String, Book> books = da.readBooksMap();
 					LibraryMember member = libMembers.get(membId);
+					
 					Book checkBook = books.get(isbn);
 					if(member == null) System.out.println("Library member not found");
 					else {
@@ -118,7 +120,7 @@ public class CheckoutBook extends JPanel {
 									flag = true;
 									LocalDate checkDate = LocalDate.now();
 									LocalDate dueDate = checkDate.plusDays(checkBook.getMaxCheckoutLength());
-//									member.addCheckout(new Checkout(String.valueOf(bc[i].getCopyNum()), checkDate, dueDate));
+									member.addCheckout(new Checkout(String.valueOf(bc[i].getCopyNum()), checkDate, dueDate));
 //									bc[i].changeAvailability();
 //									da.saveMembersMap(libMembers);
 //									da.savebooksMap(books);

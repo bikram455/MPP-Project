@@ -1,20 +1,24 @@
 package business;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
-
-final public class LibraryMember extends Person implements Serializable {
+ public class LibraryMember extends Person implements Serializable {
 	private String memberId;
+	private List<Checkout> checkouts;
 	
 	public LibraryMember(String memberId, String fname, String lname, String tel,Address add) {
 		super(fname,lname, tel, add);
 		this.memberId = memberId;		
+		this.checkouts = new ArrayList<>();
 	}
-	
+	public void setCheckouts(List<Checkout> checkouts) {
+		this.checkouts = checkouts;
+	}
+	public List<Checkout> getCheckouts() {
+		return checkouts;
+	}
 	
 	public String getMemberId() {
 		return memberId;
@@ -29,4 +33,11 @@ final public class LibraryMember extends Person implements Serializable {
 	}
 
 	private static final long serialVersionUID = -2226197306790714013L;
+	
+	public void addCheckout(Checkout ch) {
+		if(checkouts == null) checkouts = new ArrayList<>();
+		System.out.println("hello world: " + checkouts);
+		checkouts.add(ch);
+		System.out.println("hello world: " + checkouts);
+	}
 }
