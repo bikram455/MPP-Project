@@ -199,22 +199,25 @@ public class AddMember extends JPanel
 				
 						try {
 							controllerInterface.addMember(membId, memberFirstName, memberLastName, telephone, memberStreet, memberCity, memberState, memberZip);
+							//here remove daf search to system controller
+							JOptionPane.showMessageDialog(AddMember.this, controllerInterface.searchMember(membId), "SUCESS",
+									JOptionPane.PLAIN_MESSAGE);
+							memberId.setText("");
+							firstName.setText("");
+							lastName.setText("");
+							phoneNumber.setText("");
+							street.setText("");
+							city.setText("");
+							state.setText("");
+							zip.setText("");
 						} catch (LibrarySystemException e1) {
 							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							JOptionPane.showMessageDialog(AddMember.this, "Library Member with Id already Exist!!!", "Error",
+									JOptionPane.ERROR_MESSAGE);
 						}
 						
-						memberId.setText("");
-						firstName.setText("");
-						lastName.setText("");
-						phoneNumber.setText("");
-						street.setText("");
-						city.setText("");
-						state.setText("");
-						zip.setText("");
-						//here remove daf search to system controller
-						JOptionPane.showMessageDialog(AddMember.this, controllerInterface.searchMember(membId), "SUCESS",
-								JOptionPane.PLAIN_MESSAGE);
+						
+						
 						
 
 					}}
