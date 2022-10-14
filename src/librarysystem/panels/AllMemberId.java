@@ -14,25 +14,30 @@ import dataaccess.DataAccessFacade;
 public class AllMemberId extends JPanel {
 	HashMap<String, LibraryMember> members;
 	JTable jt;
+
 	/**
 	 * Create the panel.
 	 */
 	public AllMemberId() {
-		String[] columns = {"Member Id", "First Name", "Last Name"};
+		display();
+	}
+
+	public void display() {
+		String[] columns = { "Member Id", "First Name", "Last Name" };
 		members = new DataAccessFacade().readMemberMap();
 		List<String[]> table = new ArrayList<>();
-		
-		for(String k: members.keySet()) {
-			String[] row= {members.get(k).getMemberId(), members.get(k).getFirstName(), members.get(k).getLastName()};
+
+		for (String k : members.keySet()) {
+			String[] row = { members.get(k).getMemberId(), members.get(k).getFirstName(),
+					members.get(k).getLastName() };
 			table.add(row);
 		}
-		String[][] tableData= table.toArray(String[][]::new);
+		String[][] tableData = table.toArray(String[][]::new);
 		jt = new JTable(tableData, columns);
-		
+
 		jt.getColumnModel().getColumn(0).setPreferredWidth(100);
 		jt.getColumnModel().getColumn(1).setPreferredWidth(100);
 		jt.getColumnModel().getColumn(2).setPreferredWidth(100);
 		add(new JScrollPane(jt));
 	}
-
 }
