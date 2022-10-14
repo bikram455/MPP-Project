@@ -13,5 +13,5 @@ public interface ControllerInterface {
 	public Book searchBook(String isbn);
 
 	LibraryMember searchMember(String memberId);
-
+	public void updateBook(Book book);
 }

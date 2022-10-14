@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import dataaccess.Auth;
 import dataaccess.DataAccessFacade;
 import dataaccess.TestData;
 import dataaccess.User;
-import librarysystem.panels.SearchBook;
-import librarysystem.panels.SearchMember;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
@@ -29,6 +25,23 @@ public class SystemController implements ControllerInterface {
 //		currentAuth = map.get(id).getAuthorization();
 //		
 //	}
+
+	public static final SystemController INSTANCE = new SystemController();
+	
+//	public void login(String id, String password) throws LoginException {
+//		DataAccess da = new DataAccessFacade();
+//		HashMap<String, User> map = da.readUserMap();
+//		if(!map.containsKey(id)) {
+//			throw new LoginException("ID " + id + " not found");
+//		}
+//		String passwordFound = map.get(id).getPassword();
+//		if(!passwordFound.equals(password)) {
+//			throw new LoginException("Password incorrect");
+//		}
+//		currentAuth = map.get(id).getAuthorization();
+//		
+//	}
+
 	@Override
 	public List<String[]> allMemberIds() {
 		HashMap<String, LibraryMember> members;
@@ -72,7 +85,6 @@ public class SystemController implements ControllerInterface {
 		for (User user : users) {
 			if (userName.contains(user.getId()) && password.contains(user.getPassword())) {
 				u = user;
-
 				break;
 			}
 		}
@@ -94,18 +106,6 @@ public class SystemController implements ControllerInterface {
 		da.saveNewBook(book);
 	}
 
-	@Override
-	public Book searchBook(String isbn) {
-		// TODO Auto-generated method stub
-		DataAccessFacade da = new DataAccessFacade();
-		Book book = da.searchBook(isbn);
-		if (book == null) {
-			book = null;
-		} else {
-			book.toString();
-		}
-		return book;
-	}
 
 	@Override
 	public LibraryMember searchMember(String memberId) {
@@ -130,4 +130,17 @@ public class SystemController implements ControllerInterface {
 		}
 		return memeber;
 	}
+	
+	public Book searchBook(String isbn) {
+		DataAccessFacade daf = new DataAccessFacade();
+		Book book = daf.searchBook(isbn);
+		return book;
+	}
+	
+	@Override
+	public void updateBook(Book book) {
+		DataAccessFacade daf = new DataAccessFacade();
+		daf.updateBook(book);
+	}
+	
 }
