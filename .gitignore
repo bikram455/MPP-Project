@@ -1,3 +1,3 @@
 /bin
-/src/dataaccess/storage/BOOKS
-/src/dataaccess/storage/MEMBERS
+src/dataaccess/storage/BOOKS
+src/dataaccess/storage/MEMBERS
