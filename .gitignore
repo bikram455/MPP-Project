@@ -1,3 +1,6 @@
 /bin
+<<<<<<< HEAD
 src/dataaccess/storage/BOOKS
 src/dataaccess/storage/MEMBERS
+=======
+>>>>>>> parent of af46bdd (* add data files to gitignore.)
