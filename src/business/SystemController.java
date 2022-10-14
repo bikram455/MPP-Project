@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import dataaccess.Auth;
+import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import dataaccess.TestData;
 import dataaccess.User;
@@ -103,6 +104,22 @@ public class SystemController implements ControllerInterface {
         Book book = new Book(isbn, title, maxCheckoutLength, authors);
         da.saveNewBook(book);
 	}
+	
+	@Override
+    public void addMember(String id, String firstName, String lastName, String cell, String street, String city, String state, String zip) throws LibrarySystemException {
+        if (id.length() == 0 || firstName.length() == 0 || lastName.length() == 0
+                || cell.length() == 0 || street.length() == 0 || city.length() == 0
+                || state.length() == 0 || zip.length() == 0) {
+            throw new LibrarySystemException("All fields must be non-empty");
+        }
+        Address address = new Address(street, city, state, zip);
+//        if (searchMember(id) != null) {
+//            throw new LibrarySystemException("Library Member with ID " + id + " already exists");
+//        }
+        DataAccess da = new DataAccessFacade();
+        LibraryMember member = new LibraryMember(id, firstName, lastName, cell, address);
+        da.saveNewMember(member);
+    }
 	
 	public Book searchBook(String isbn) {
 		DataAccessFacade daf = new DataAccessFacade();

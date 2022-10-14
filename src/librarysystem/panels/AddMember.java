@@ -13,11 +13,16 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import business.Address;
+import business.ControllerInterface;
 import business.LibraryMember;
+import business.LibrarySystemException;
+import business.SystemController;
 import dataaccess.DataAccessFacade;
 
 public class AddMember extends JPanel
 	{
+	
+	    ControllerInterface controllerInterface = SystemController.INSTANCE;
 		private JTextField memberId;
 		private JTextField firstName;
 		private JTextField lastName;
@@ -190,11 +195,16 @@ public class AddMember extends JPanel
 						JOptionPane.showMessageDialog(AddMember.this, "Zip cannot be empty!!!", "Error",
 								JOptionPane.ERROR_MESSAGE);
 					} else {
-						Address address = new Address(memberStreet, memberCity, memberState, memberZip);
-						LibraryMember libraryMember = new LibraryMember(membId, memberFirstName, memberLastName,
-								telephone, address);
+						
+				
+						try {
+							controllerInterface.addMember(membId, memberFirstName, memberLastName, telephone, memberStreet, memberCity, memberState, memberZip);
+						} catch (LibrarySystemException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						DataAccessFacade daf = new DataAccessFacade();
-						daf.saveNewMember(libraryMember);
+//						daf.saveNewMember(libraryMember);
 						memberId.setText("");
 						firstName.setText("");
 						lastName.setText("");
@@ -203,10 +213,10 @@ public class AddMember extends JPanel
 						city.setText("");
 						state.setText("");
 						zip.setText("");
+						//here remove daf search to system controller
 						JOptionPane.showMessageDialog(AddMember.this, daf.searchMember(membId), "SUCESS",
 								JOptionPane.PLAIN_MESSAGE);
-						System.out.println(membId + " " + memberFirstName + " " + memberLastName + " " + telephone + " "
-								+ address.toString());
+						
 
 					}}
 	        };
