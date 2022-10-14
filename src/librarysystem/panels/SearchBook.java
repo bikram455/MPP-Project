@@ -12,7 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import business.Book;
+import business.SystemController;
 import dataaccess.DataAccessFacade;
+import dataaccess.User;
 
 public class SearchBook extends JPanel{
 	
@@ -68,15 +70,13 @@ public class SearchBook extends JPanel{
 				}else {
 				
 //					TODO implement code
-					DataAccessFacade da = new DataAccessFacade();
-					da.searchBook(search);
 					
-					Book book = da.searchBook(search);
+					Book book = new SystemController().searchBook(search);
 					if(book==null) {
 						JOptionPane.showMessageDialog(SearchBook.this,"Book Not Found", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
 					}else {
-						JOptionPane.showMessageDialog(SearchBook.this, da.searchBook(search), "SUCESS",
+						JOptionPane.showMessageDialog(SearchBook.this, book, "SUCESS",
 								JOptionPane.PLAIN_MESSAGE);
 					}
 					

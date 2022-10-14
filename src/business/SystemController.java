@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import dataaccess.Auth;
 import dataaccess.DataAccessFacade;
 import dataaccess.TestData;
 import dataaccess.User;
+import librarysystem.panels.SearchBook;
+import librarysystem.panels.SearchMember;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
-	
+
 //	public void login(String id, String password) throws LoginException {
 //		DataAccess da = new DataAccessFacade();
 //		HashMap<String, User> map = da.readUserMap();
@@ -42,14 +46,14 @@ public class SystemController implements ControllerInterface {
 //		retval.addAll(da.readMemberMap().keySet());
 //		return retval;
 	}
-	
+
 	@Override
 	public List<String[]> allBookIds() {
 		HashMap<String, Book> books = new DataAccessFacade().readBooksMap();
 		List<String[]> table = new ArrayList<>();
-		for(String k: books.keySet()) {
+		for (String k : books.keySet()) {
 //			System.out.println("test"+books.get(k));
-			String[] row = {books.get(k).getIsbn(), books.get(k).getTitle()};
+			String[] row = { books.get(k).getIsbn(), books.get(k).getTitle() };
 			table.add(row);
 		}
 		return table;
@@ -64,30 +68,66 @@ public class SystemController implements ControllerInterface {
 		TestData test = new TestData();
 		List<User> users = test.allUsers;
 
-		
-		
 		User u = null;
 		for (User user : users) {
 			if (userName.contains(user.getId()) && password.contains(user.getPassword())) {
 				u = user;
-				
+
 				break;
 			}
 		}
-		if(u == null) throw new LoginException("Username or password incorrect!");
+		if (u == null)
+			throw new LoginException("Username or password incorrect!");
 		return u;
 	}
-	
+
 	@Override
 	public void addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors)
 			throws LibrarySystemException {
 		// TODO Auto-generated method stub
 		DataAccessFacade da = new DataAccessFacade();
-        Book storedBook = da.searchBook(isbn);
-        if (storedBook != null) {
-            throw new LibrarySystemException("Book with ISBN " + isbn + " already exists");
-        }
-        Book book = new Book(isbn, title, maxCheckoutLength, authors);
-        da.saveNewBook(book);
+		Book storedBook = da.searchBook(isbn);
+		if (storedBook != null) {
+			throw new LibrarySystemException("Book with ISBN " + isbn + " already exists");
+		}
+		Book book = new Book(isbn, title, maxCheckoutLength, authors);
+		da.saveNewBook(book);
+	}
+
+	@Override
+	public Book searchBook(String isbn) {
+		// TODO Auto-generated method stub
+		DataAccessFacade da = new DataAccessFacade();
+		Book book = da.searchBook(isbn);
+		if (book == null) {
+			book = null;
+		} else {
+			book.toString();
+		}
+		return book;
+	}
+
+	@Override
+	public LibraryMember searchMember(String memberId) {
+		// TODO Auto-generated method stub
+
+		DataAccessFacade da = new DataAccessFacade();
+		da.searchMember(memberId);
+//		System.out.println("The member: " + da.searchMember(membId).getFirstName() + " " +da.searchMember(membId).getLastName());
+		LibraryMember memeber = da.searchMember(memberId);
+		if (memeber == null) {
+			memberId = null;
+		} else {
+			List<Checkout> checkouts = memeber.getCheckouts();
+			if (checkouts==null) {
+				System.out.println("Checkout is empty");
+			} else {
+				for (int i = 0; i < checkouts.size(); i++)
+					System.out.println(checkouts.get(i));
+//			JOptionPane.showMessageDialog(SearchMember.this, da.searchMember(membId), "SUCESS",
+//					JOptionPane.PLAIN_MESSAGE);
+			}
+		}
+		return memeber;
 	}
 }

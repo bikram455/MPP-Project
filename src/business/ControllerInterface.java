@@ -9,4 +9,9 @@ public interface ControllerInterface {
 	public List<String[]> allMemberIds();
 	public List<String[]> allBookIds();
 	public void addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors) throws LibrarySystemException;
+	
+	public Book searchBook(String isbn);
+
+	LibraryMember searchMember(String memberId);
+
 }
