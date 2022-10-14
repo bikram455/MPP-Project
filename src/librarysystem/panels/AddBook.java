@@ -193,7 +193,7 @@ public class AddBook extends JPanel{
 					
 					try {
 						bookCheckoutLength= Integer.parseInt(checkoutLengthData);
-						System.out.println(bookIsbn + " " + bookAuthorFirstName);
+						//System.out.println(bookIsbn + " " + bookAuthorFirstName);
 		                
 			               
 		                Address address = new Address("101 S. Main", "Fairfield", "IA", "52556");
@@ -218,7 +218,9 @@ public class AddBook extends JPanel{
 						
 					} catch (LibrarySystemException e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						//e1.printStackTrace();
+						JOptionPane.showMessageDialog(AddBook.this, "Isbn Already Exist!!!", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 										
 	                //String bookCopies = numberOfCopies.getText();
