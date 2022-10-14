@@ -109,9 +109,17 @@ public class CheckoutBook extends JPanel {
 					LibraryMember member = libMembers.get(membId);
 					
 					Book checkBook = books.get(isbn);
-					if(member == null) System.out.println("Library member not found");
+					if(member == null) { 
+						System.out.println("Library member not found");
+						JOptionPane.showMessageDialog(CheckoutBook.this, "Library member not found", "SUCESS",
+								JOptionPane.PLAIN_MESSAGE);
+						}
 					else {
-						if(checkBook == null) System.out.println("Book not found");
+						if(checkBook == null) {
+							System.out.println("Book not found");
+							JOptionPane.showMessageDialog(CheckoutBook.this, "Book not found", "SUCESS",
+									JOptionPane.PLAIN_MESSAGE);
+							}
 						else {
 							boolean flag = false;
 							BookCopy[] bc = checkBook.getCopies();
@@ -124,10 +132,18 @@ public class CheckoutBook extends JPanel {
 									bc[i].changeAvailability();
 									da.saveMembersMap(libMembers);
 									da.saveBooksMap(books);
+									 JOptionPane.showMessageDialog(CheckoutBook.this, "Checkout Book Sucessful", "SUCESS",
+												JOptionPane.PLAIN_MESSAGE);
+									 memberId.setText("");
+									 ISBN.setText("");
 									break;
 								}
 							}
-							if(!flag) System.out.println("No copies of book available"); 
+							if(!flag) {
+								System.out.println("No copies of book available"); 
+								JOptionPane.showMessageDialog(CheckoutBook.this, "No copies of book available", "SUCESS",
+										JOptionPane.PLAIN_MESSAGE);
+							}
 						}
 					}
 				}
