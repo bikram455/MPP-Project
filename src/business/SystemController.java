@@ -26,11 +26,21 @@ public class SystemController implements ControllerInterface {
 		
 	}
 	@Override
-	public List<String> allMemberIds() {
-		DataAccess da = new DataAccessFacade();
-		List<String> retval = new ArrayList<>();
-		retval.addAll(da.readMemberMap().keySet());
-		return retval;
+	public List<String[]> allMemberIds() {
+		HashMap<String, LibraryMember> members;
+		members = new DataAccessFacade().readMemberMap();
+		List<String[]> table = new ArrayList<>();
+
+		for (String k : members.keySet()) {
+			String[] row = { members.get(k).getMemberId(), members.get(k).getFirstName(),
+					members.get(k).getLastName() };
+			table.add(row);
+		}
+		return table;
+//		DataAccess da = new DataAccessFacade();
+//		List<String> retval = new ArrayList<>();
+//		retval.addAll(da.readMemberMap().keySet());
+//		return retval;
 	}
 	
 	@Override
