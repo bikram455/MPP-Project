@@ -4,6 +4,9 @@ package librarysystem.panels;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.HashMap;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -11,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import business.Book;
+import business.BookCopy;
+import business.LibraryMember;
 import dataaccess.DataAccessFacade;
 
 
@@ -96,6 +102,32 @@ public class CheckoutBook extends JPanel {
 				}else {
 				
 //					TODO implement code
+					DataAccessFacade da = new DataAccessFacade();
+					HashMap<String, LibraryMember> libMembers = da.readMemberMap();
+					HashMap<String, Book> books = da.readBooksMap();
+					LibraryMember member = libMembers.get(membId);
+					Book checkBook = books.get(isbn);
+					if(member == null) System.out.println("Library member not found");
+					else {
+						if(checkBook == null) System.out.println("Book not found");
+						else {
+							boolean flag = false;
+							BookCopy[] bc = checkBook.getCopies();
+							for(int i = 0; i < bc.length; i++) {
+								if(bc[i].isAvailable()) {
+									flag = true;
+									LocalDate checkDate = LocalDate.now();
+									LocalDate dueDate = checkDate.plusDays(checkBook.getMaxCheckoutLength());
+//									member.addCheckout(new Checkout(String.valueOf(bc[i].getCopyNum()), checkDate, dueDate));
+//									bc[i].changeAvailability();
+//									da.saveMembersMap(libMembers);
+//									da.savebooksMap(books);
+									break;
+								}
+							}
+							if(!flag) System.out.println("No copies of book available"); 
+						}
+					}
 				}
 
 			}

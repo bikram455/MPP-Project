@@ -202,5 +202,12 @@ public class DataAccessFacade implements DataAccess {
 	        }
 	        return null;
 	}
+
+	public void saveMembersMap(HashMap<String, LibraryMember> members) {
+		saveToStorage(StorageType.MEMBERS, members);
+	}
 	
+	public void saveBooksMap(HashMap<String, Book> books) {
+		saveToStorage(StorageType.BOOKS, books);
+	}
 }
