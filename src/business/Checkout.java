@@ -23,7 +23,7 @@ public class Checkout implements Serializable{
 	
 	@Override
 	public String toString() {
-		return book.getTitle() + "copy id: " + copyNum +"  checkedout date: " + checkoutDate + " due date: " + dueDate;
+		return book + "copy id: " + copyNum +"  checkedout date: " + checkoutDate + " due date: " + dueDate;
 	}
 	
 	

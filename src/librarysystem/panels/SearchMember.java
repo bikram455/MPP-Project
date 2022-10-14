@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import business.Book;
 import business.Checkout;
 import business.LibraryMember;
+import business.SystemController;
 import dataaccess.DataAccessFacade;
 
 public class SearchMember extends JPanel {
@@ -81,19 +83,29 @@ public class SearchMember extends JPanel {
 				
 //					TODO implement code
 					
-					DataAccessFacade da = new DataAccessFacade();
-					da.searchMember(membId);
-					System.out.println("The member: " + da.searchMember(membId).getFirstName() + " " +da.searchMember(membId).getLastName());
-					LibraryMember memeber = da.searchMember(membId);
-					if(memeber==null) {
-						JOptionPane.showMessageDialog(SearchMember.this,"Memeber Not Found", "ERROR",
+//					DataAccessFacade da = new DataAccessFacade();
+//					da.searchMember(membId);
+//					System.out.println("The member: " + da.searchMember(membId).getFirstName() + " " +da.searchMember(membId).getLastName());
+//					LibraryMember memeber = da.searchMember(membId);
+//					if(memeber==null) {
+//						JOptionPane.showMessageDialog(SearchMember.this,"Memeber Not Found", "ERROR",
+//								JOptionPane.ERROR_MESSAGE);
+//					}else {
+//						List<Checkout> checkouts = memeber.getCheckouts();
+//						for(int i = 0; i < checkouts.size(); i++) System.out.println(checkouts.get(i));
+////						JOptionPane.showMessageDialog(SearchMember.this, da.searchMember(membId), "SUCESS",
+////								JOptionPane.PLAIN_MESSAGE);
+//					}
+					
+					LibraryMember library = new SystemController().searchMember(membId);
+					if(library==null) {
+						JOptionPane.showMessageDialog(SearchMember.this,"Book Not Found", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
 					}else {
-						List<Checkout> checkouts = memeber.getCheckouts();
-						for(int i = 0; i < checkouts.size(); i++) System.out.println(checkouts.get(i));
-//						JOptionPane.showMessageDialog(SearchMember.this, da.searchMember(membId), "SUCESS",
-//								JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(SearchMember.this, library, "SUCESS",
+								JOptionPane.PLAIN_MESSAGE);
 					}
+					
 					
 				}
 
