@@ -170,7 +170,7 @@ public class AddBook extends JPanel{
 					JOptionPane.showMessageDialog(AddBook.this, "ISBN cannot be empty!!!", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else if (bookAuthorFirstName.isEmpty()) {
-					JOptionPane.showMessageDialog(AddBook.this, "First Name cannot be empty!!!", "Error",
+					JOptionPane.showMessageDialog(AddBook.this, "Title cannot be empty!!!", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 				else if (bookAuthorLastName.isEmpty()) {

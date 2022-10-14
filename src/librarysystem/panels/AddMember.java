@@ -200,7 +200,7 @@ public class AddMember extends JPanel
 						try {
 							controllerInterface.addMember(membId, memberFirstName, memberLastName, telephone, memberStreet, memberCity, memberState, memberZip);
 							//here remove daf search to system controller
-							JOptionPane.showMessageDialog(AddMember.this, controllerInterface.searchMember(membId), "SUCESS",
+							JOptionPane.showMessageDialog(AddMember.this, "Library Member Added", "SUCESS",
 									JOptionPane.PLAIN_MESSAGE);
 							memberId.setText("");
 							firstName.setText("");

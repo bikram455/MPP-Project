@@ -55,10 +55,10 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Login");
+		JLabel lblNewLabel = new JLabel("Library Management System");
 		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 46));
-		lblNewLabel.setBounds(423, 13, 273, 93);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 36));
+		lblNewLabel.setBounds(250, 6, 973, 93);
 		contentPane.add(lblNewLabel);
 
 		userNameTextField = new JTextField();
@@ -88,7 +88,7 @@ public class Login extends JFrame {
 
 		btnNewButton = new JButton("Login");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		btnNewButton.setBounds(445, 400, 162, 73);
+		btnNewButton.setBounds(385, 399, 162, 73);
 		btnNewButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 		btnNewButton.addActionListener(new ActionListener() {
 
