@@ -41,5 +41,20 @@ public class SystemController implements ControllerInterface {
 		return retval;
 	}
 	
+	@Override
+	public void addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors)
+			throws LibrarySystemException {
+		// TODO Auto-generated method stub
+		DataAccess da = new DataAccessFacade();
+        Book storedBook = da.searchBook(isbn);
+        if (storedBook != null) {
+            throw new LibrarySystemException("Book with ISBN " + isbn + " already exists");
+        }
+        Book book = new Book(isbn, title, maxCheckoutLength, authors);
+        da.saveNewBook(book);
+	}
+	
+	
+	
 	
 }
