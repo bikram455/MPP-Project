@@ -90,4 +90,17 @@ public class SystemController implements ControllerInterface {
         Book book = new Book(isbn, title, maxCheckoutLength, authors);
         da.saveNewBook(book);
 	}
+	
+	public Book searchBook(String isbn) {
+		DataAccessFacade daf = new DataAccessFacade();
+		Book book = daf.searchBook(isbn);
+		return book;
+	}
+	
+	@Override
+	public void updateBook(Book book) {
+		DataAccessFacade daf = new DataAccessFacade();
+		daf.updateBook(book);
+	}
+	
 }
