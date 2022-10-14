@@ -79,11 +79,20 @@ public class Content extends JPanel {
 				break;
 			case "All Book Id":
 				prev = allBookId;
+				allBookId.removeAll();
+				allBookId.revalidate();
+				allBookId.repaint();
+				allBookId.display();
 				allBookId.setVisible(true);
 				break;
 			case "All Member Id":
 				prev = allMemberId;
+				allMemberId.removeAll();
+				allMemberId.revalidate();
+				allMemberId.repaint();
+				allMemberId.display();
 				allMemberId.setVisible(true);
+				
 				break;
 			case "Checkout Book":
 				prev = checkoutBook;

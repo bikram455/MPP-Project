@@ -19,12 +19,16 @@ public class AllBookId extends JPanel {
 	public AllBookId() {
 //		TestData td = new TestData();
 //		List<Book> books = td.allBooks;
+		display();
+	}
+	
+	public void display(){
 		HashMap<String, Book> books = new DataAccessFacade().readBooksMap();
 		String[] columns = {"Book Id", "Book Title"};
 		
 		List<String[]> table = new ArrayList<>();
 		for(String k: books.keySet()) {
-			System.out.println(books.get(k));
+			System.out.println("test"+books.get(k));
 			String[] row = {books.get(k).getIsbn(), books.get(k).getTitle()};
 			table.add(row);
 		}

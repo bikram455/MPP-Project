@@ -38,6 +38,7 @@ public class MenuList extends JPanel {
 		String[] items = getMenuList(access);
 
 		menuList = new JList(items);
+		menuList.setSelectedIndex(0);
 //		menuList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 //		menuList.setModel(new AbstractListModel() {		
 //			public int getSize() {
