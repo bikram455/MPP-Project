@@ -78,4 +78,17 @@ public class SystemController implements ControllerInterface {
 		return u;
 	}
 	
+	@Override
+	public Book searchBook(String isbn) {
+		DataAccessFacade daf = new DataAccessFacade();
+		Book book = daf.searchBook(isbn);
+		return book;
+	}
+	
+	@Override
+	public void updateBook(Book book) {
+		DataAccessFacade daf = new DataAccessFacade();
+		daf.updateBook(book);
+	}
+	
 }

@@ -11,14 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import business.Address;
 import business.Book;
-import business.BookCopy;
-import business.LibraryMember;
-import business.LibrarySystemException;
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
-import dataaccess.TestData;
+import business.SystemController;
 
 public class AddBookCopy extends JPanel {
 	private JTextField isbn;
@@ -67,13 +61,13 @@ public class AddBookCopy extends JPanel {
 					JOptionPane.showMessageDialog(AddBookCopy.this, "ISBN cannot be empty!!!", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					DataAccessFacade daf = new DataAccessFacade();
-					Book book = daf.searchBook(iSbn);
+					SystemController sc = new SystemController();
+					Book book = sc.searchBook(iSbn);
 					if (book == null) {
 						System.out.println("Book not found");
 					} else {
 						book.addCopy();
-						daf.updateBook(book);
+						sc.updateBook(book);
 						JOptionPane.showMessageDialog(AddBookCopy.this, "Book Copy Added", "SUCESS",
 								JOptionPane.PLAIN_MESSAGE);
 						System.out.println("Book Copy Added");
