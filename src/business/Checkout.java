@@ -1,8 +1,9 @@
 package business;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Checkout {
+public class Checkout implements Serializable{
 	private LocalDate checkoutDate;
 	private String copyId;
 	private LocalDate dueDate;

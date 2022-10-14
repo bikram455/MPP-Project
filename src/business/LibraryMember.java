@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
- public class LibraryMember extends Person implements Serializable {
+final public class LibraryMember extends Person implements Serializable {
 	private String memberId;
 	private List<Checkout> checkouts;
 	
@@ -36,8 +36,6 @@ import java.util.List;
 	
 	public void addCheckout(Checkout ch) {
 		if(checkouts == null) checkouts = new ArrayList<>();
-		System.out.println("hello world: " + checkouts);
 		checkouts.add(ch);
-		System.out.println("hello world: " + checkouts);
 	}
 }

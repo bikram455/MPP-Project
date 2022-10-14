@@ -121,9 +121,9 @@ public class CheckoutBook extends JPanel {
 									LocalDate checkDate = LocalDate.now();
 									LocalDate dueDate = checkDate.plusDays(checkBook.getMaxCheckoutLength());
 									member.addCheckout(new Checkout(String.valueOf(bc[i].getCopyNum()), checkDate, dueDate));
-//									bc[i].changeAvailability();
-//									da.saveMembersMap(libMembers);
-//									da.savebooksMap(books);
+									bc[i].changeAvailability();
+									da.saveMembersMap(libMembers);
+									da.saveBooksMap(books);
 									break;
 								}
 							}
