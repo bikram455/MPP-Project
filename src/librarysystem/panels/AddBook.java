@@ -34,6 +34,7 @@ import business.Author;
 import business.Book;
 import business.ControllerInterface;
 import business.LibraryMember;
+import business.LibrarySystemException;
 import business.SystemController;
 import dataaccess.DataAccessFacade;
 
@@ -43,6 +44,7 @@ import javax.swing.JButton;
 
 public class AddBook extends JPanel{
 	
+	private final ControllerInterface sc = SystemController.INSTANCE;
 	private JTextField isbn;
 	private JTextField authorFirstName;
 	private JTextField title;
@@ -197,8 +199,9 @@ public class AddBook extends JPanel{
 		                Address address = new Address("101 S. Main", "Fairfield", "IA", "52556");
 		                Author author = new Author(bookAuthorFirstName, bookAuthorLastName, authorPhoneNumber, address, "He is Good.");
 		                Book book = new Book(bookIsbn,bookTitle, bookCheckoutLength, List.of(author));
-		                DataAccessFacade daf = new DataAccessFacade();
-		                daf.saveNewBook(book);
+		                sc.addBook(bookIsbn, bookTitle, bookCheckoutLength, List.of(author));
+		                //DataAccessFacade daf = new DataAccessFacade();
+		                //daf.saveNewBook(book);
 		                
 		                isbn.setText("");
 		                authorFirstName.setText("");
@@ -213,6 +216,9 @@ public class AddBook extends JPanel{
 							JOptionPane.showMessageDialog(AddBook.this, "Checkout Length must be number!!!", "Error",
 									JOptionPane.ERROR_MESSAGE);
 						
+					} catch (LibrarySystemException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 										
 	                //String bookCopies = numberOfCopies.getText();
