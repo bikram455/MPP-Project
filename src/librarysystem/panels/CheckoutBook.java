@@ -42,7 +42,7 @@ public class CheckoutBook extends JPanel {
 	public void fetchData() {
 	
 		DataAccessFacade data = new DataAccessFacade();
-		System.out.println("Data " + data.readBooksMap());
+//		System.out.println("Data " + data.readBooksMap());
 		
 	}
 	
@@ -128,7 +128,7 @@ public class CheckoutBook extends JPanel {
 									flag = true;
 									LocalDate checkDate = LocalDate.now();
 									LocalDate dueDate = checkDate.plusDays(checkBook.getMaxCheckoutLength());
-									member.addCheckout(new Checkout(String.valueOf(bc[i].getCopyNum()), checkDate, dueDate));
+									member.addCheckout(new Checkout(checkBook, bc[i].getCopyNum(),  checkDate, dueDate));
 									bc[i].changeAvailability();
 									da.saveMembersMap(libMembers);
 									da.saveBooksMap(books);

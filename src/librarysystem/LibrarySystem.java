@@ -119,7 +119,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 			for(String s: ids) {
 				sb.append(s + "\n");
 			}
-			System.out.println(sb.toString());
+//			System.out.println(sb.toString());
 			AllBookIdsWindow.INSTANCE.setData(sb.toString());
 			AllBookIdsWindow.INSTANCE.pack();
 			//AllBookIdsWindow.INSTANCE.setSize(660,500);
@@ -149,7 +149,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 			for(String s: ids) {
 				sb.append(s + "\n");
 			}
-			System.out.println(sb.toString());
+//			System.out.println(sb.toString());
 			AllMemberIdsWindow.INSTANCE.setData(sb.toString());
 			AllMemberIdsWindow.INSTANCE.pack();
 			//AllMemberIdsWindow.INSTANCE.setSize(660,500);

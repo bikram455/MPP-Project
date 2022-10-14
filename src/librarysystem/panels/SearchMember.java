@@ -3,6 +3,7 @@ package librarysystem.panels;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import business.Book;
+import business.Checkout;
 import business.LibraryMember;
 import dataaccess.DataAccessFacade;
 
@@ -33,7 +34,7 @@ public class SearchMember extends JPanel {
 	public void fetchData() {
 		
 		DataAccessFacade data = new DataAccessFacade();
-		System.out.println("member read " + data.readMemberMap());
+//		System.out.println("member read " + data.readMemberMap());
 		
 	}
 	
@@ -82,14 +83,16 @@ public class SearchMember extends JPanel {
 					
 					DataAccessFacade da = new DataAccessFacade();
 					da.searchMember(membId);
-					System.out.println("The memdber " + da.searchMember(membId));
+					System.out.println("The member: " + da.searchMember(membId).getFirstName() + " " +da.searchMember(membId).getLastName());
 					LibraryMember memeber = da.searchMember(membId);
 					if(memeber==null) {
 						JOptionPane.showMessageDialog(SearchMember.this,"Memeber Not Found", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
 					}else {
-						JOptionPane.showMessageDialog(SearchMember.this, da.searchMember(membId), "SUCESS",
-								JOptionPane.PLAIN_MESSAGE);
+						List<Checkout> checkouts = memeber.getCheckouts();
+						for(int i = 0; i < checkouts.size(); i++) System.out.println(checkouts.get(i));
+//						JOptionPane.showMessageDialog(SearchMember.this, da.searchMember(membId), "SUCESS",
+//								JOptionPane.PLAIN_MESSAGE);
 					}
 					
 				}

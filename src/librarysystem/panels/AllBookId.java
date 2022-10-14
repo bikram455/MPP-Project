@@ -28,7 +28,7 @@ public class AllBookId extends JPanel {
 		
 		List<String[]> table = new ArrayList<>();
 		for(String k: books.keySet()) {
-			System.out.println("test"+books.get(k));
+//			System.out.println("test"+books.get(k));
 			String[] row = {books.get(k).getIsbn(), books.get(k).getTitle()};
 			table.add(row);
 		}

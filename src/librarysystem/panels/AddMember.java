@@ -1,22 +1,20 @@
 package librarysystem.panels;
 
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import business.Address;
 import business.LibraryMember;
 import dataaccess.DataAccessFacade;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class AddMember extends JPanel
 	{
@@ -51,7 +49,7 @@ public class AddMember extends JPanel
 		 */
 		public AddMember() {
 			init();
-			System.out.println("insite add member page");
+//			System.out.println("insite add member page");
 		}
 		
 		

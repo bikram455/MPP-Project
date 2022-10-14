@@ -4,13 +4,27 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Checkout implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4588414476496935558L;
 	private LocalDate checkoutDate;
-	private String copyId;
+	private Book book;
+	private int copyNum;
 	private LocalDate dueDate;
 	
-	public Checkout(String copyId, LocalDate checkoutDate, LocalDate dueDate) {
-		this.copyId = copyId;
+	public Checkout(Book book, int copyNum,  LocalDate checkoutDate, LocalDate dueDate) {
+		this.book = book;
+		this.copyNum = copyNum;
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return book.getTitle() + "copy id: " + copyNum +"  checkedout date: " + checkoutDate + " due date: " + dueDate;
+	}
+	
+	
 }
