@@ -140,9 +140,9 @@ public class SystemController implements ControllerInterface {
             throw new LibrarySystemException("All fields must be non-empty");
         }
         Address address = new Address(street, city, state, zip);
-//        if (searchMember(id) != null) {
-//            throw new LibrarySystemException("Library Member with ID " + id + " already exists");
-//        }
+        if (searchMember(id) != null) {
+            throw new LibrarySystemException("Library Member with ID " + id + " already exists");
+        }
         DataAccess da = new DataAccessFacade();
         LibraryMember member = new LibraryMember(id, firstName, lastName, cell, address);
         da.saveNewMember(member);

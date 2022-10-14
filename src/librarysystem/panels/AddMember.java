@@ -203,8 +203,7 @@ public class AddMember extends JPanel
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						DataAccessFacade daf = new DataAccessFacade();
-//						daf.saveNewMember(libraryMember);
+						
 						memberId.setText("");
 						firstName.setText("");
 						lastName.setText("");
@@ -214,7 +213,7 @@ public class AddMember extends JPanel
 						state.setText("");
 						zip.setText("");
 						//here remove daf search to system controller
-						JOptionPane.showMessageDialog(AddMember.this, daf.searchMember(membId), "SUCESS",
+						JOptionPane.showMessageDialog(AddMember.this, controllerInterface.searchMember(membId), "SUCESS",
 								JOptionPane.PLAIN_MESSAGE);
 						
 
